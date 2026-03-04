@@ -1,8 +1,7 @@
-import { BrowserRouter } from 'react'
-import HomePage from '@/pages/HomePage'
+// import { BrowserRouter } from 'react'
 
 export default function App() {
     return (
-        <HomePage>
+        <h1>app page</h1>
     )
 }
