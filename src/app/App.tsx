@@ -1,7 +1,13 @@
-// import { BrowserRouter } from 'react'
+import { BrowserRouter } from 'react'
 
 export default function App() {
     return (
-        <h1>app page</h1>
+        <>
+            <nav>
+            
+            </nav>
+
+            <h1>This is App page</h1>
+        </>
     )
 }
