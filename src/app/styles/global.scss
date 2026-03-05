@@ -1,0 +1,28 @@
+@use './variables' as *;
+
+// paste normalize above...
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-bg;
+    color: $color-text-primary;
+    font-family: $font-primary;
+    font-size: $font-size-body;
+}
+
+h1, h2, h3 {
+    font-family: $font-heading;
+}
+
+img, video {
+    max-width: 100%;
+    display: block;
+}
+
+main, body {
+    margin: 0;
+    padding: 0;
+}
