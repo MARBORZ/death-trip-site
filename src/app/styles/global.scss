@@ -1,0 +1,6 @@
+@use './variables.scss' as *;
+
+nav{ 
+    display: flex;
+    gap: $space-sm;
+}
