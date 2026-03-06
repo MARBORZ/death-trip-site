@@ -1,3 +1,4 @@
+import NavArrows from '@/shared/ui/NavArrows/NavArrows'
 import styles from './home-page.module.scss'
 import { motion } from 'motion/react'
 
@@ -69,6 +70,7 @@ export default function HomePage() {
                     </motion.div>
                 </section>
             </div>
+            <NavArrows sections={['hero', 'characters', 'evening', 'crash', 'aftermath']} />
         </>
     )
 }
