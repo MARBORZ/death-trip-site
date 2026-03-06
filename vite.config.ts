@@ -4,13 +4,14 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 5500
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
-  }
+    plugins: [react()],
+    server: {
+        port: 5500,
+        origin: 'https://shaunte-gawkier-observantly.ngrok-free.dev',
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
 })
