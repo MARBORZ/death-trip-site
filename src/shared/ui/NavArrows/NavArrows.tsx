@@ -3,6 +3,19 @@ import type Lenis from 'lenis'
 
 export default function NavArrows({ sections, lenis }: { sections: string[], lenis: Lenis | null }) {
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [isFooterVisible, setIsFooterVisible] = useState(false)
+
+    useEffect(() => {
+        const footer = document.querySelector('footer')
+        console.log(footer)
+        const spectate = new IntersectionObserver((entries) => {
+            setIsFooterVisible(entries[0].isIntersecting)
+        })
+
+        if (footer) spectate.observe(footer)
+
+        return () => spectate.disconnect()
+    }, [])
 
     useEffect(() => {
         const handleScroll = ({ scroll }: { scroll: number }) => {
@@ -31,14 +44,14 @@ export default function NavArrows({ sections, lenis }: { sections: string[], len
             style={{
                 position: 'fixed',
                 bottom: '2rem',
-                left: '50%',
-                transform: 'translateX(-50%)',
+                left: isFooterVisible ? 'calc(95% - 2rem)' : '50%',
+                transform: isFooterVisible ? 'none' : 'translateX(-50%)',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
                 zIndex: 100,
                 color: 'white',
-                transition: 'transform 0.3s ease',
+                transition: 'left 1s ease, transform 1s ease',
             }}
         >
             <svg
