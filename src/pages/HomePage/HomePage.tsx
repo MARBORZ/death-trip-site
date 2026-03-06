@@ -1,7 +1,13 @@
+import NavArrows from '@/shared/ui/NavArrows'
 import styles from './home-page.module.scss'
 import { motion } from 'motion/react'
+import { useLenis } from '@/app/providers'
+
+
 
 export default function HomePage() {
+    const lenis = useLenis()
+
     const textAnimation = {
         initial: { opacity: 0, y: 50 },
         whileInView: { opacity: 1, y: 0 },
@@ -10,6 +16,7 @@ export default function HomePage() {
 
     return (
         <>
+            <NavArrows sections={['hero', 'characters', 'evening', 'crash', 'aftermath']} lenis={lenis} />
             <div className={styles.sectionWrapper}>
                 <section className={styles.section} id='hero'>
                     <div className={styles.containerImg}>
