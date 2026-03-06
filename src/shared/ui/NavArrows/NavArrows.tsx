@@ -1,44 +1,25 @@
 import { useEffect, useState } from "react"
+import type Lenis from 'lenis'
 
-
-
-export default function NavArrows({ sections }: { sections: string[] }) {
+export default function NavArrows({ sections, lenis }: { sections: string[], lenis: Lenis | null }) {
     const [currentIndex, setCurrentIndex] = useState(0)
 
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY
-
-            let closest = 0
-            let minDiff = Infinity
-
-            sections.forEach((id, index) => {
-                const el = document.getElementById(id)
-                if (!el) return
-
-                const wrapper = el.closest('[class*="sectionWrapper"]') as HTMLElement
-                if (!wrapper) return
-
-                const wrapperTop = wrapper.offsetTop
-                const diff = Math.abs(scrollY - wrapperTop)
-                if (diff < minDiff) {
-                    minDiff = diff
-                    closest = index
-                }
-            })
-
-            setCurrentIndex(closest)
+        const handleScroll = ({ scroll }: { scroll: number }) => {
+            const index = Math.round(scroll / (window.innerHeight * 2))
+            setCurrentIndex(Math.min(index, sections.length - 1))
         }
 
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [sections])
+        lenis?.on('scroll', handleScroll)
+        return () => lenis?.off('scroll', handleScroll)
+    }, [sections, lenis])
 
     const handleClick = () => {
         const nextIndex = currentIndex >= sections.length - 1 ? 0 : currentIndex + 1
-        const el = document.getElementById(sections[nextIndex])
-        const wrapper = el?.closest('[class*="sectionWrapper"]') as HTMLElement
-        window.scrollTo({ top: wrapper?.offsetTop, behavior: 'smooth' })
+        lenis?.scrollTo(nextIndex * window.innerHeight * 2, {
+            duration: 2.5,
+            easing: (t) => t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2
+        })
         setCurrentIndex(nextIndex)
     }
 
