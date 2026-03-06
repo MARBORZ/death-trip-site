@@ -1,0 +1,51 @@
+@use '@/app/styles/variables.scss' as *;
+
+.button {
+    position: fixed;
+    bottom: 2rem;
+    z-index: 100;
+    
+    // Сброс дефолтных стилей кнопки
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white; // Или твой основной цвет
+    
+    // Начальное состояние: центр
+    left: 50%;
+    transform: translateX(-50%);
+    
+    // Плавный переход для всех состояний
+    // Используем плавный выезд (Out-Quart)
+    transition: 
+        left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+        opacity 0.3s ease;
+
+    // Когда виден футер — улетаем в угол
+    &[data-footer-visible="true"] {
+        left: calc(95% - 2rem);
+        transform: translateX(0);
+        
+        @media (max-width: 768px) {
+            // На мобилках лучше оставить в центре или просто скрыть
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.5;
+        }
+    }
+
+    .icon {
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    // Если это последняя секция — переворачиваем стрелку
+    &[data-is-last="true"] .icon {
+        transform: rotate(180deg);
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
