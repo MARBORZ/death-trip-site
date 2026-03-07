@@ -17,6 +17,7 @@ export default function HomePage() {
         transition: { duration: 0.5 },
     }
 
+    // Wheel event Function
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
