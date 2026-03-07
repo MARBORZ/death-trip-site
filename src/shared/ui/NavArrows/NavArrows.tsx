@@ -1,13 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
-import type Lenis from 'lenis'
 import styles from './nav-arrows.module.scss'
-
-interface INavArrowsProps {
-    sections: string[]
-    lenis: Lenis | null
-    currentIndex: number
-    onIndexChange: (index: number) => void
-}
+import type { INavArrowsProps } from '@/shared/types/interfaces'
 
 export default function NavArrows({
     sections,
