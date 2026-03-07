@@ -31,23 +31,23 @@ export default function NavArrows({
 
         lenis?.on('scroll', handleScroll)
         return () => lenis?.off('scroll', handleScroll)
-    }, [sections, lenis])
+    }, [sections, lenis, onIndexChange])
 
     const handleClick = useCallback(() => {
         if (isFooterVisible) {
             lenis?.scrollTo(0, {
-                duration: 2.5,
+                duration: 1.5,
                 easing: (t) => 1 - Math.pow(1 - t, 5),
             })
         } else if (isLast) {
             lenis?.scrollTo(document.body.scrollHeight, {
-                duration: 2.5,
+                duration: 2,
                 easing: (t) => 1 - Math.pow(1 - t, 5),
             })
         } else {
             const nextIndex = currentIndex + 1
             lenis?.scrollTo(nextIndex * window.innerHeight * 2, {
-                duration: 2,
+                duration: 3,
                 easing: (t) => 1 - Math.pow(1 - t, 5),
             })
         }
