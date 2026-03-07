@@ -14,9 +14,10 @@ export default function HomePage() {
     const textAnimation = {
         initial: { opacity: 0, y: 50 },
         whileInView: { opacity: 1, y: 0 },
-        transition: { duration: 0.5 },
+        transition: { duration: 0.8 },
     }
 
+    // Wheel event Function
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
