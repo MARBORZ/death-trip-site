@@ -1,4 +1,4 @@
-import Lenis from "lenis"
+import type Lenis from "lenis"
 
 export interface INavArrowsProps {
     sections: string[]
