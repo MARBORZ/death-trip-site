@@ -1,9 +1,8 @@
-@use '../../app/styles/variables' as *;
+@use '@/app/styles/variables' as *;
 
 .footer {
-    background: #0a0a0a;
+    background: $color-bg-tertiary;
     padding: $space-xl;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .container {
@@ -16,6 +15,7 @@
     display: flex;
     align-items: center;
     gap: $space-lg;
+    flex: 1;
 }
 
 .logo {
@@ -34,19 +34,21 @@
 }
 
 .copy {
+    flex: 1;
+    text-align: right;
     font-size: 0.75rem;
     color: $color-transparent;
 }
 
 a {
-        color: $color-text-secondary;
-        text-decoration: none;
-        font-size: 1rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        transition: color $transition-medium;
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color $transition-medium;
 
-        &:hover {
-            color: $color-text-primary;
-        }
+    &:hover {
+        color: $color-text-primary;
     }
+}

@@ -1,0 +1,155 @@
+@use '@/app/styles/variables' as *;
+
+// Hero Section
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.heroImage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to top,
+        rgba(10, 14, 26, 0.85) 0%,
+        rgba(10, 14, 26, 0.4) 40%,
+        rgba(10, 14, 26, 0.2) 100%
+    );
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    padding: $space-xl;
+    padding-bottom: $space-2xl;
+    width: 100%;
+}
+
+.textBox {
+    padding: $space-md;
+    background-color: transparent;
+}
+
+.heroTitle {
+    font-family: $font-heading;
+    font-size: $font-size-hero;
+    font-weight: 700;
+    color: $color-text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    line-height: 1;
+}
+
+// Contact Section
+.contact {
+    background-color: $color-bg;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-2xl $space-lg;
+}
+
+.contactInner {
+    width: 100%;
+    max-width: 600px;
+}
+
+.contactContent {
+    width: 100%;
+}
+
+.intro {
+    font-family: $font-primary;
+    font-size: $font-size-body;
+    color: $color-text-secondary;
+    line-height: 1.7;
+    margin-bottom: $space-xl;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+}
+
+.label {
+    font-family: $font-primary;
+    font-size: 0.9rem;
+    color: $color-text-secondary;
+    font-weight: 500;
+}
+
+.input,
+.textarea {
+    background-color: $color-surface;
+    border: 1px solid rgba($color-accent-light, 0.2);
+    border-radius: 8px;
+    padding: $space-md;
+    font-family: $font-primary;
+    font-size: 1rem;
+    color: $color-text-primary;
+    transition: border-color $transition-medium;
+
+    &::placeholder {
+        color: $color-transparent;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $color-accent-light;
+    }
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.button {
+    background-color: $color-accent;
+    color: $color-text-primary;
+    border: none;
+    border-radius: 8px;
+    padding: $space-md $space-lg;
+    font-family: $font-primary;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-medium;
+    text-align: center;
+
+    &:hover {
+        background-color: #000;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
