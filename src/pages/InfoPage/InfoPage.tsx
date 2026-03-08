@@ -4,7 +4,7 @@ import NavArrows from '@/shared/ui/NavArrows'
 import { useLenis } from '@/app/providers'
 import { useState } from 'react'
 
-const sections = ['hero', 'intro', 'statistics', 'alcohol', 'consequences']
+const sections = ['hero', 'intro', 'statistics', 'alcohol', 'consequences', 'footer']
 
 export default function InfoPage() {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -30,11 +30,10 @@ export default function InfoPage() {
                 lenis={lenis}
                 currentIndex={currentIndex}
                 onIndexChange={setCurrentIndex}
-                scrollStep={1}
             />
 
             {/* Hero Section */}
-            <section className={styles.hero}>
+            <section className={styles.hero} id='hero'>
                 <div className={styles.heroImage}>
                     <img
                         src="https://picsum.photos/1920/1080?random=10"
@@ -53,8 +52,8 @@ export default function InfoPage() {
                     {/* Intro */}
                     <motion.article
                         {...articleAnimation}
-                        id="intro"
                         className={styles.article}
+                        id="intro"
                     >
                         <h2 className={styles.articleHeading}>
                             Hva er russetiden?

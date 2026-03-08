@@ -2,9 +2,16 @@ import NavArrows from '@/shared/ui/NavArrows'
 import styles from './home-page.module.scss'
 import { motion } from 'motion/react'
 import { useLenis } from '@/app/providers'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
-const sections = ['hero', 'characters', 'evening', 'crash', 'aftermath']
+const sections = [
+    'hero',
+    'characters',
+    'evening',
+    'crash',
+    'aftermath',
+    'footer',
+]
 
 export default function HomePage() {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -18,18 +25,27 @@ export default function HomePage() {
     }
 
     // Wheel event Function
+    const isScrolling = useRef(false)
+
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
             e.preventDefault()
+            if (isScrolling.current) return // блокируем пока идёт анимация
+
             const nextIndex =
                 e.deltaY > 0
                     ? Math.min(currentIndex + 1, sections.length - 1)
                     : Math.max(currentIndex - 1, 0)
 
-            lenis?.scrollTo(nextIndex * window.innerHeight * 2, {
+            const el = document.getElementById(sections[nextIndex])
+            isScrolling.current = true
+            lenis?.scrollTo(el ?? 0, {
                 duration: 2.5,
                 easing: (t) => 1 - Math.pow(1 - t, 5),
+                onComplete: () => {
+                    isScrolling.current = false
+                },
             })
             setCurrentIndex(nextIndex)
         }
@@ -46,8 +62,8 @@ export default function HomePage() {
                 currentIndex={currentIndex}
                 onIndexChange={setCurrentIndex}
             />
-            <div className={styles.sectionWrapper}>
-                <section className={styles.section} id="hero">
+            <div className={styles.sectionWrapper} id="hero">
+                <section className={styles.section}>
                     <div className={styles.containerImg}>
                         <img
                             src="https://picsum.photos/1920/1080?random=1"
@@ -61,8 +77,8 @@ export default function HomePage() {
                 </section>
             </div>
 
-            <div className={styles.sectionWrapper}>
-                <section className={styles.section} id="characters">
+            <div className={styles.sectionWrapper} id="characters">
+                <section className={styles.section}>
                     <div className={styles.containerImg}>
                         <img
                             src="https://picsum.photos/1920/1080?random=2"
@@ -78,8 +94,8 @@ export default function HomePage() {
                 </section>
             </div>
 
-            <div className={styles.sectionWrapper}>
-                <section className={styles.section} id="evening">
+            <div className={styles.sectionWrapper} id="evening">
+                <section className={styles.section}>
                     <div className={styles.containerImg}>
                         <img
                             src="https://picsum.photos/1920/1080?random=3"
@@ -95,8 +111,8 @@ export default function HomePage() {
                 </section>
             </div>
 
-            <div className={styles.sectionWrapper}>
-                <section className={styles.section} id="crash">
+            <div className={styles.sectionWrapper} id="crash">
+                <section className={styles.section}>
                     <div className={styles.containerImg}>
                         <img
                             src="https://picsum.photos/1920/1080?random=4"
@@ -112,8 +128,8 @@ export default function HomePage() {
                 </section>
             </div>
 
-            <div className={styles.sectionWrapper}>
-                <section className={styles.section} id="aftermath">
+            <div className={styles.sectionWrapper} id="aftermath">
+                <section className={styles.section}>
                     <div className={styles.containerImg}>
                         <img
                             src="https://picsum.photos/1920/1080?random=5"
