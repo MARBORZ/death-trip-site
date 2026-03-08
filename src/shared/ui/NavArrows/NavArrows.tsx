@@ -6,51 +6,65 @@ export default function NavArrows({
     sections,
     lenis,
     currentIndex,
-    scrollStep,
     onIndexChange,
 }: INavArrowsProps) {
     const [isFooterVisible, setIsFooterVisible] = useState(false)
 
+    // isFooterVisible logic
     useEffect(() => {
         const footer = document.querySelector('footer')
-        const spectateFooter = new IntersectionObserver((entries) => {
-            setIsFooterVisible(entries[0].isIntersecting)
-        })
+        const spectateFooter = new IntersectionObserver(
+            (entries) => {
+                setIsFooterVisible(entries[0].isIntersecting)
+            },
+            { threshold: 0.2 }
+        )
 
         if (footer) spectateFooter.observe(footer)
 
         return () => spectateFooter.disconnect()
     }, [])
 
+    // useScroll
     useEffect(() => {
         const handleScroll = ({ scroll }: { scroll: number }) => {
-            const index = Math.round(
-                scroll / (window.innerHeight * (scrollStep || 2))
-            )
-            onIndexChange(Math.min(index, sections.length - 1))
+            const index = sections.reduce((closest, id, i) => {
+                const el = document.getElementById(id)
+                if (!el) return closest
+                const diff = Math.abs(el.offsetTop - scroll)
+                const closestEl = document.getElementById(sections[closest])
+                const closestDiff = closestEl
+                    ? Math.abs(closestEl.offsetTop - scroll)
+                    : Infinity
+                return diff < closestDiff ? i : closest
+            }, 0)
+            onIndexChange(index)
         }
-
         lenis?.on('scroll', handleScroll)
         return () => lenis?.off('scroll', handleScroll)
-    }, [sections, lenis, onIndexChange, scrollStep])
+    }, [sections, lenis, onIndexChange])
 
+    // handleClick
     const handleClick = useCallback(() => {
         if (isFooterVisible) {
             lenis?.scrollTo(0, {
-                duration: 1.5,
+                duration: 1,
                 easing: (t) => 1 - Math.pow(1 - t, 5),
             })
-        } else {
-            const nextIndex = currentIndex + 1
-            lenis?.scrollTo(
-                nextIndex * window.innerHeight * (scrollStep || 2),
-                {
-                    duration: 2.5,
-                    easing: (t) => 1 - Math.pow(1 - t, 5),
-                }
-            )
+            return
         }
-    }, [currentIndex, isFooterVisible, lenis])
+
+        const nextIndex = currentIndex + 1
+        if (nextIndex >= sections.length) return // ← защита
+
+        const el = document.getElementById(sections[nextIndex])
+        if (!el) return // ← защита
+
+        lenis?.scrollTo(el, {
+            duration: 1.2,
+            easing: (t) => 1 - Math.pow(1 - t, 5),
+        })
+    }, [currentIndex, isFooterVisible, lenis, sections])
 
     return (
         <button
