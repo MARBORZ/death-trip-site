@@ -7,7 +7,6 @@ export default defineConfig({
     plugins: [react()],
     server: {
         port: 5500,
-        origin: 'https://shaunte-gawkier-observantly.ngrok-free.dev',
     },
     resolve: {
         alias: {
