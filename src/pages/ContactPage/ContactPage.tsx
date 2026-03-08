@@ -18,7 +18,6 @@ export default function ContactPage() {
 
     return (
         <>
-            {/* Hero Section */}
             <section className={styles.hero}>
                 <div className={styles.heroImage}>
                     <img
@@ -32,21 +31,49 @@ export default function ContactPage() {
                 </motion.div>
             </section>
 
-            {/* Contact Section */}
             <section className={styles.contact}>
                 <div className={styles.contactInner}>
                     <motion.div
                         {...contentAnimation}
                         className={styles.contactContent}
                     >
-                        <div className={styles.textBox}>
-                            <p className={styles.intro}>
-                                Hei! Jeg heter Amadi Masuev, er 17 år og er en
-                                juniorutvikler som alltid er åpen for nye
-                                prosjekter og samarbeid. Ta gjerne kontakt — jeg
-                                ser frem til å høre fra deg!
-                            </p>
+                        <p className={styles.intro}>
+                            Hei! Jeg heter Amadi Masuev, er 17 år og er en
+                            juniorutvikler som alltid er åpen for nye prosjekter
+                            og samarbeid. Ta gjerne kontakt — jeg ser frem til å
+                            høre fra deg!
+                        </p>
+
+                        <div className={styles.links}>
+                            <a
+                                href="mailto:masuevamadi@gmail.com"
+                                className={styles.link}
+                            >
+                                <span className={styles.linkIcon}>✉</span>
+                                masuevamadi@gmail.com
+                            </a>
+                            <a
+                                href="https://github.com/MARBORZ"
+                                target="_blank"
+                                rel="noreferrer"
+                                className={styles.link}
+                            >
+                                <span className={styles.linkIcon}>⌥</span>
+                                GitHub
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/amadi-masuev-b8516b363/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className={styles.link}
+                            >
+                                <span className={styles.linkIcon}>[In]</span>
+                                LinkedIn
+                            </a>
                         </div>
+
+                        <div className={styles.divider} />
+
                         <div className={styles.form}>
                             <div className={styles.field}>
                                 <label htmlFor="name" className={styles.label}>
@@ -59,7 +86,6 @@ export default function ContactPage() {
                                     placeholder="Ditt navn"
                                 />
                             </div>
-
                             <div className={styles.field}>
                                 <label htmlFor="email" className={styles.label}>
                                     E-post
@@ -71,7 +97,6 @@ export default function ContactPage() {
                                     placeholder="din@epost.no"
                                 />
                             </div>
-
                             <div className={styles.field}>
                                 <label
                                     htmlFor="message"
@@ -86,15 +111,9 @@ export default function ContactPage() {
                                     rows={5}
                                 />
                             </div>
-
                             <div
                                 className={styles.button}
                                 onClick={() => {}}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        e.preventDefault()
-                                    }
-                                }}
                                 role="button"
                                 tabIndex={0}
                             >

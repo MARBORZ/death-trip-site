@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 export default function Footer() {
     return (
-        <footer className={styles.footer}>
+        <footer className={styles.footer} id='footer'>
             <div className={styles.container}>
                 <div className={styles.logos}>
                     <a href="https://www.ungitrafikken.no/kampanjer-og-prosjekter/deathtrip" target='_blank'>
