@@ -37,12 +37,12 @@ export default function InfoPage() {
                 <div className={styles.heroImage}>
                     <img
                         src="https://picsum.photos/1920/1080?random=10"
-                        alt="Russe og trafikk"
+                        alt="Rus og trafikk"
                     />
                 </div>
                 <div className={styles.heroOverlay} />
                 <motion.div {...heroAnimation} className={styles.heroContent}>
-                    <h1 className={styles.heroTitle}>RUSSE & TRAFIKK</h1>
+                    <h1 className={styles.heroTitle}>RUS & TRAFIKK</h1>
                 </motion.div>
             </section>
 
