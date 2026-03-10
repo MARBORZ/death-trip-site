@@ -80,7 +80,7 @@ export default function HomePage() {
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
-                        <h1 className={styles.title}>SISTE STORY</h1>
+                        <h1 className={styles.title}>HOLD DEG UNNA FLASKA NÅR DU SKAL KJØRE</h1>
                     </motion.div>
                 </section>
             </div>
@@ -98,7 +98,7 @@ export default function HomePage() {
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
                         <p className={styles.description}>
-                            Fire venner. En kveld. Et valg.
+                            Fire venner. En dag. Et valg.
                         </p>
                     </motion.div>
                 </section>
@@ -117,7 +117,7 @@ export default function HomePage() {
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
                         <p className={styles.description}>
-                            Kvelden startet som alle andre.
+                            Dagen startet som alle andre.
                         </p>
                     </motion.div>
                 </section>
