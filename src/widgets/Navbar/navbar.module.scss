@@ -6,7 +6,6 @@
     left: 0;
     right: 0;
     display: flex;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
     justify-content: space-between;
     align-items: center;
     padding: $space-lg;
@@ -16,12 +15,14 @@
 .logo {
     font-size: 1.1rem;
     font-weight: 700;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
     letter-spacing: 0.05em;
     color: $color-text-primary;
 }
 
 .navLinks {
     display: flex;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
     gap: $space-lg;
 
     a {
