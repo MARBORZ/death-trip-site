@@ -1,0 +1,54 @@
+@use '@/app/styles/variables' as *;
+
+.footer {
+    background: $color-bg-tertiary;
+    padding: $space-xl;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    gap: $space-lg;
+    flex: 1;
+}
+
+.logo {
+    height: 32px;
+    opacity: 0.9;
+}
+
+.logoPartner {
+    height: 28px;
+    opacity: 0.7;
+}
+
+.links {
+    display: flex;
+    gap: $space-lg;
+}
+
+.copy {
+    flex: 1;
+    text-align: right;
+    font-size: 0.75rem;
+    color: $color-transparent;
+}
+
+a {
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color $transition-medium;
+
+    &:hover {
+        color: $color-text-primary;
+    }
+}
