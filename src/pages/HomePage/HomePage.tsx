@@ -155,7 +155,7 @@ export default function HomePage() {
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
                         <p className={styles.description}>
-                            Livet slutte for alltid.
+                            Døden er for alltid.
                         </p>
                     </motion.div>
                 </section>
