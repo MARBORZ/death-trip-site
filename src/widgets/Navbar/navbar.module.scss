@@ -1,0 +1,39 @@
+@use '@/app/styles/variables.scss' as *;
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    justify-content: space-between;
+    align-items: center;
+    padding: $space-lg;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: $color-text-primary;
+}
+
+.navLinks {
+    display: flex;
+    gap: $space-lg;
+
+    a {
+        color: $color-text-secondary;
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition: color $transition-medium;
+
+        &:hover {
+            color: $color-text-primary;
+        }
+    }
+}
