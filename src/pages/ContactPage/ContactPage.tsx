@@ -1,5 +1,6 @@
 import styles from './contact-page.module.scss'
 import { motion } from 'motion/react'
+import contact from '@/assets/images/contact.jpg'
 import ContactForm from '@/features/contact-form/ui'
 
 export default function ContactPage() {
@@ -22,13 +23,11 @@ export default function ContactPage() {
             <section className={styles.hero}>
                 <div className={styles.heroImage}>
                     <img
-                        src="https://picsum.photos/1920/1080?random=20"
+                        src={contact}
                         alt="Kontakt"
                     />
                 </div>
-
                 <div className={styles.heroOverlay} />
-
                 <motion.div {...heroAnimation} className={styles.heroContent}>
                     <h1 className={styles.heroTitle}>KONTAKT</h1>
                 </motion.div>
@@ -54,7 +53,6 @@ export default function ContactPage() {
                                 <span className={styles.linkIcon}>✉</span>
                                 masuevamadi@gmail.com
                             </a>
-
                             <a
                                 href="https://github.com/MARBORZ"
                                 target="_blank"
@@ -64,7 +62,6 @@ export default function ContactPage() {
                                 <span className={styles.linkIcon}>⌥</span>
                                 GitHub
                             </a>
-
                             <a
                                 href="https://www.linkedin.com/in/amadi-masuev-b8516b363/"
                                 target="_blank"
@@ -75,6 +72,7 @@ export default function ContactPage() {
                                 LinkedIn
                             </a>
                         </div>
+
                         <ContactForm />
                     </motion.div>
                 </div>
@@ -82,4 +80,3 @@ export default function ContactPage() {
         </>
     )
 }
-
