@@ -79,16 +79,9 @@
     line-height: 1.8;
     margin-bottom: $space-xl;
     text-align: left;
-    padding: $space-xl 0;
+    padding: $space-lg 0;
     border-left: 2px solid $color-accent-light;
     padding-left: $space-lg;
-}
-
-.divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(30, 58, 138, 0.3);
-    margin: $space-xl 0;
 }
 
 .links {
@@ -102,4 +95,3 @@
         padding: $space-sm;
     }
 }
-
