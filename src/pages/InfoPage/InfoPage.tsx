@@ -3,7 +3,6 @@ import { motion } from 'motion/react'
 import NavArrows from '@/shared/ui/NavArrows'
 import { useLenis } from '@/app/providers'
 import { useState } from 'react'
-import alcohol from '../../assets/videos/images/alcohol.jpg'
 
 const sections = ['hero', 'intro', 'statistics', 'alcohol', 'consequences', 'footer']
 
@@ -37,7 +36,7 @@ export default function InfoPage() {
             <section className={styles.hero} id='hero'>
                 <div className={styles.heroImage}>
                     <img
-                        src={alcohol}
+                        src="https://picsum.photos/1920/1080?random=10"
                         alt="Rus og trafikk"
                     />
                 </div>

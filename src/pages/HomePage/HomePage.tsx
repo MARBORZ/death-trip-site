@@ -3,12 +3,6 @@ import styles from './home-page.module.scss'
 import { motion } from 'motion/react'
 import { useLenis } from '@/app/providers'
 import { useEffect, useState, useRef } from 'react'
-import mainVideo from '../../assets/videos/main.mp4'
-import bar from '../../assets/videos/bar.mp4'
-import car from '../../assets/videos/car.mp4'
-import drink from '../../assets/videos/drink.mp4'
-import crash from '../../assets/videos/crash.mp4'
-
 
 const sections = [
     'hero',
@@ -71,11 +65,9 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="hero">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={mainVideo}
-                            autoPlay
-                            loop
-                            muted
+                        <img
+                            src="https://picsum.photos/1920/1080?random=1"
+                            alt="hero"
                         />
                     </div>
                     <div className={styles.overlay} />
@@ -88,17 +80,15 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="characters">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={bar}
-                            autoPlay
-                            loop
-                            muted
+                        <img
+                            src="https://picsum.photos/1920/1080?random=2"
+                            alt="characters"
                         />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
                         <p className={styles.description}>
-                            Fire venner. En kveld. Et valg.
+                            To venner. En kveld. Et valg.
                         </p>
                     </motion.div>
                 </section>
@@ -107,11 +97,9 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="evening">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={car}
-                            autoPlay
-                            loop
-                            muted
+                        <img
+                            src="https://picsum.photos/1920/1080?random=3"
+                            alt="evening"
                         />
                     </div>
                     <div className={styles.overlay} />
@@ -126,11 +114,9 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="crash">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                         <video
-                            src={drink}
-                            autoPlay
-                            loop
-                            muted
+                        <img
+                            src="https://picsum.photos/1920/1080?random=4"
+                            alt="crash"
                         />
                     </div>
                     <div className={styles.overlay} />
@@ -145,17 +131,15 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="aftermath">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={crash}
-                            autoPlay
-                            loop
-                            muted
+                        <img
+                            src="https://picsum.photos/1920/1080?random=5"
+                            alt="aftermath"
                         />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
                         <p className={styles.description}>
-                            Livet slute for alltid.
+                            Livet endret seg for alltid.
                         </p>
                     </motion.div>
                 </section>
