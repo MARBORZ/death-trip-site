@@ -96,85 +96,10 @@
     align-items: center;
     justify-content: center;
     gap: $space-md;
+    margin-bottom: $space-xl;
 
     & > a > span {
         padding: $space-sm;
     }
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: $space-lg;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: $space-sm;
-}
-
-.label {
-    font-family: $font-primary;
-    font-size: 0.9rem;
-    color: $color-text-secondary;
-    font-weight: 500;
-}
-
-.input,
-.textarea {
-    background-color: $color-surface;
-    border: 1px solid rgba($color-accent-light, 0.2);
-    border-radius: 8px;
-    padding: $space-md;
-    font-family: $font-primary;
-    font-size: 1rem;
-    color: $color-text-primary;
-    transition: border-color $transition-medium;
-
-    &::placeholder {
-        color: $color-transparent;
-    }
-
-    &:focus {
-        outline: none;
-        border-color: $color-accent-light;
-    }
-
-    &::placeholder {
-        color: $color-text-secondary;
-        font-family: $font-heading;
-        font-style: normal;
-        opacity: .5;
-        font-weight: 600;
-        font-size: 0.95rem;
-    }
-}
-
-.textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.button {
-    background-color: $color-accent;
-    color: $color-text-primary;
-    border: none;
-    border-radius: 8px;
-    padding: $space-md $space-lg;
-    font-family: $font-primary;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all $transition-medium;
-    text-align: center;
-
-    &:hover {
-        background-color: #000;
-        transform: translateY(-2px);
-    }
-
-    &:active {
-        transform: translateY(0);
-    }
-}
