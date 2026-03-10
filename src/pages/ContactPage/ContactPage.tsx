@@ -1,5 +1,6 @@
 import styles from './contact-page.module.scss'
 import { motion } from 'motion/react'
+import contact from '../../assets/videos/images/contact.jpg'
 
 export default function ContactPage() {
     const heroAnimation = {
@@ -21,7 +22,7 @@ export default function ContactPage() {
             <section className={styles.hero}>
                 <div className={styles.heroImage}>
                     <img
-                        src="https://picsum.photos/1920/1080?random=20"
+                        src={contact}
                         alt="Kontakt"
                     />
                 </div>
