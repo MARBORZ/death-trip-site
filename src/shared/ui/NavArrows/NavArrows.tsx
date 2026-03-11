@@ -1,14 +1,16 @@
 import { useEffect, useState, useCallback } from 'react'
 import styles from './nav-arrows.module.scss'
 import type { INavArrowsProps } from '@/shared/types/interfaces'
+import  useLenis  from '@/app/context'
 
 export default function NavArrows({
     sections,
-    lenis,
     currentIndex,
     onIndexChange,
 }: INavArrowsProps) {
     const [isFooterVisible, setIsFooterVisible] = useState(false)
+
+    const lenis = useLenis()
 
     // isFooterVisible logic
     useEffect(() => {

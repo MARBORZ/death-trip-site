@@ -1,25 +1,24 @@
 import Lenis from 'lenis'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
-
 import { LenisContext } from '../context/useLenis'
 
 export default function LenisProvider({ children }: { children: ReactNode }) {
-    const [lenis] = useState<Lenis | null>(() => new Lenis())
+    const [lenis, setLenis] = useState<Lenis | null>(null)
 
     useEffect(() => {
-        if (!lenis) return;
+        const lenis = new Lenis()
+        setLenis(lenis)
 
         function raf(time: number) {
-            lenis?.raf(time)
+            lenis.raf(time)
             requestAnimationFrame(raf)
         }
 
         requestAnimationFrame(raf)
 
-
         return () => lenis.destroy()
-    }, [lenis])
+    }, [])
 
     return (
         <LenisContext.Provider value={lenis}>
