@@ -7,7 +7,6 @@ import ScrollToTop from '@/shared/ui/ScrollToTop'
 
 export default function App() {
     return (
-        <>
             <BrowserRouter>
                 <Layout>
                     <ScrollToTop />
@@ -18,6 +17,5 @@ export default function App() {
                     </Routes>
                 </Layout>
             </BrowserRouter>
-        </>
     )
 }

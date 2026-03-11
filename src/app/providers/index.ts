@@ -1,1 +1,1 @@
-export { useLenis } from './LenisProvider'
+export { default } from './LenisProvider'

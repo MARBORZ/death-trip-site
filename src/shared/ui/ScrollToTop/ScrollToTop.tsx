@@ -1,4 +1,4 @@
-import { useLenis } from '@/app/providers'
+import useLenis from '@/app/context'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
 
