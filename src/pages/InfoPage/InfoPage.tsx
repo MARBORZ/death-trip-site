@@ -1,7 +1,6 @@
 import styles from './info-page.module.scss'
 import { motion } from 'motion/react'
 import NavArrows from '@/shared/ui/NavArrows'
-import useLenis from '@/app/context'
 import { useState } from 'react'
 import alcohol from '@/assets/images/alcohol.jpg'
 
@@ -9,7 +8,6 @@ const sections = ['hero', 'intro', 'statistics', 'alcohol', 'footer']
 
 export default function InfoPage() {
 	const [currentIndex, setCurrentIndex] = useState(0)
-	const lenis = useLenis()
 
 	const heroAnimation = {
 		initial: { opacity: 0, y: 60 },
@@ -28,7 +26,6 @@ export default function InfoPage() {
 		<>
 			<NavArrows
 				sections={sections}
-				lenis={lenis}
 				currentIndex={currentIndex}
 				onIndexChange={setCurrentIndex}
 			/>
@@ -43,7 +40,7 @@ export default function InfoPage() {
 				</div>
 				<div className={styles.heroOverlay} />
 				<motion.div {...heroAnimation} className={styles.heroContent}>
-					<h1 className={styles.heroTitle}>Informasjon</h1>
+					<h1 className={styles.heroTitle}>INFOMARSJON</h1>
 				</motion.div>
 			</section>
 

@@ -37,7 +37,7 @@ export default function HomePage() {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
             e.preventDefault()
-            if (isScrolling.current) return
+            if (isScrolling.current) return 
 
             const nextIndex =
                 e.deltaY > 0
@@ -64,7 +64,6 @@ export default function HomePage() {
         <>
             <NavArrows
                 sections={sections}
-                lenis={lenis}
                 currentIndex={currentIndex}
                 onIndexChange={setCurrentIndex}
             />
