@@ -1,7 +1,6 @@
 @use '@/app/styles/variables' as *;
 
 // Base section
-
 .sectionWrapper {
     height: 300vh;
     margin-top: -100vh;
@@ -10,23 +9,16 @@
         margin-top: 0;
     }
 
-    &:nth-child(2) {
-        z-index: 1;
+    // Dynamic Z-index to stack sections as you scroll
+    @for $i from 2 through 6 {
+        &:nth-child(#{$i}) {
+            z-index: #{$i - 1};
+        }
     }
-    &:nth-child(3) {
-        z-index: 2;
-    }
-    &:nth-child(4) {
-        z-index: 3;
-    }
-    &:nth-child(5) {
-        z-index: 4;
-    }
-    &:nth-child(6) {
-        z-index: 5;
-    }
-    &:nth-child(6) {
-        height: 100vh;
+
+    // Ensure the last section resets height if needed
+    &:last-child {
+        height: 100vh; 
     }
 }
 
@@ -36,50 +28,74 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    display: flex; // Added to help align children if needed
 }
 
-// Image container
-.containerImg {
+// Media container (Works for both <img> and <video>)
+.containerImg, 
+.containerVideo {
     position: absolute;
     inset: 0;
     z-index: 0;
 
-    img {
+    img, video {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
     }
 }
 
-// Overlay
 .overlay {
-    position: absolute;
+    position: absolute; 
     inset: 0;
     background: $color-overlay;
     z-index: 1;
+    pointer-events: none; 
 }
 
-// Text block (bottom right like NRK)
+// Text block (NRK style: bottom right)
 .textBlock {
     position: absolute;
-    bottom: $space-sm;
+    bottom: $space-xl;
     right: $space-xl;
-    z-index: 2;
+    z-index: 10; 
     color: $color-text-primary;
+    max-width: 1000px;
+    text-align: right;
 }
 
 .title {
     font-size: $font-size-hero;
-    
-    text-align: right;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: $space-2xl;
+    line-height: 1.2;
+    margin-bottom: $space-md;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
 }
 
 .description {
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    filter: drop-shadow(0 0 10px rgb(0, 0, 0));
-    line-height: 1.6;
+    line-height: 2.6;
     color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
 }
+
+
+// MEDIA QUERY
+
+@media (max-width: 700px) {
+    .textBlock{
+        text-align: left;
+        max-width: 700px;
+        right: inherit;
+        margin: $space-lg;
+        bottom: $space-xl;
+    }
+    
+    p{
+        margin: 0;
+    }
+}
+
+
