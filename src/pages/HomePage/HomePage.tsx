@@ -1,9 +1,9 @@
 import NavArrows from '@/shared/ui/NavArrows'
 import styles from './home-page.module.scss'
 import { motion } from 'motion/react'
-import { useLenis } from '@/app/providers'
+import useLenis from '@/app/context'
 import { useEffect, useState, useRef } from 'react'
-import mainVideo from '../../assets/videos/main.mp4'
+import mainVideo from '@/assets/videos/main.mp4'
 import bar from '@/assets/videos/bar.mp4'
 import car from '@/assets/videos/car.mp4'
 import drink from '@/assets/videos/drink.mp4'
@@ -37,7 +37,7 @@ export default function HomePage() {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
             e.preventDefault()
-            if (isScrolling.current) return // блокируем пока идёт анимация
+            if (isScrolling.current) return
 
             const nextIndex =
                 e.deltaY > 0
@@ -126,7 +126,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="crash">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                         <video
+                        <video
                             src={drink}
                             autoPlay
                             loop
