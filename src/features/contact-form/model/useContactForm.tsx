@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { SubmitEventHandler } from 'react';
-import type { ContactFields } from '@/shared/types/contact-field';
+import type { IContactFields } from '@/shared/types/interfaces';
 import { sendContactEmail } from '../api/send-contact';
 
 export const useContactForm = () => {
@@ -11,16 +11,16 @@ export const useContactForm = () => {
         setStatus('loading')
 
         const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData) as unknown as ContactFields;
+        const data = Object.fromEntries(formData) as unknown as IContactFields;
 
         try {
             await sendContactEmail(data);
             setStatus('success')
-            alert('Success!');
+            setTimeout(() => setStatus('idle'), 3000)
             e.currentTarget.reset();
         } catch (err) {
             setStatus('error')
-            alert(err instanceof Error ? err.message : 'Error');
+            console.error(err instanceof Error ? err.message : 'Error');
         }
     };
 

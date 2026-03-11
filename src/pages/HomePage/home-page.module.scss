@@ -62,22 +62,24 @@
 // Text block (bottom right like NRK)
 .textBlock {
     position: absolute;
-    bottom: $space-xl;
+    bottom: $space-sm;
     right: $space-xl;
-    max-width: 700px;
     z-index: 2;
     color: $color-text-primary;
 }
 
 .title {
     font-size: $font-size-hero;
+    
+    text-align: right;
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: $space-sm;
+    margin-bottom: $space-2xl;
 }
 
 .description {
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    filter: drop-shadow(0 0 10px rgb(0, 0, 0));
     line-height: 1.6;
     color: #ffffff;
 }

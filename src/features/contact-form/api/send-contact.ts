@@ -1,8 +1,8 @@
-import type { ContactFields } from '@/shared/types/contact-field';
+import type { IContactFields } from '@/shared/types/interfaces';
 
 const URL = 'https://jsonplaceholder.typicode.com/posts/1'
 
-export const sendContactEmail = async (data: ContactFields) => {
+export const sendContactEmail = async (data: IContactFields) => {
   const response = await fetch(URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
