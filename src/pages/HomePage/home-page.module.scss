@@ -40,11 +40,12 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        display: block;
     }
 }
 
 .overlay {
-    position: absolute;
+    position: absolute; 
     inset: 0;
     background: $color-overlay;
     z-index: 1;
