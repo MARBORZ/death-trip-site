@@ -40,36 +40,15 @@ export default function ContactPage() {
                         className={styles.contactContent}
                     >
                         <p className={styles.intro}>
-                            Hei! Jeg heter Amadi Masuev, er 17 år og er en
-                            juniorutvikler som alltid er åpen for nye prosjekter
-                            og samarbeid. Ta gjerne kontakt — jeg ser frem til å
-                            høre fra deg!
+                          Lurer du på noe om produktene våre, eller vil du bare si hei? 
                         </p>
                         <div className={styles.links}>
                             <a
                                 href="mailto:masuevamadi@gmail.com"
                                 className={styles.link}
                             >
-                                <span className={styles.linkIcon}>✉</span>
-                                masuevamadi@gmail.com
-                            </a>
-                            <a
-                                href="https://github.com/MARBORZ"
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles.link}
-                            >
-                                <span className={styles.linkIcon}>⌥</span>
-                                GitHub
-                            </a>
-                            <a
-                                href="https://www.linkedin.com/in/amadi-masuev-b8516b363/"
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles.link}
-                            >
-                                <span className={styles.linkIcon}>[In]</span>
-                                LinkedIn
+                                {/* <span className={styles.linkIcon}>✉</span> */}
+                                masuevamadi@gmail.com 
                             </a>
                         </div>
 
