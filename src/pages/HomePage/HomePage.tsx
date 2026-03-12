@@ -9,7 +9,6 @@ import car from '@/assets/videos/car.mp4'
 import drink from '@/assets/videos/drink.mp4'
 import crash from '@/assets/videos/crash.mp4'
 
-
 const sections = [
     'hero',
     'characters',
@@ -37,7 +36,7 @@ export default function HomePage() {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
             e.preventDefault()
-            if (isScrolling.current) return 
+            if (isScrolling.current) return
 
             const nextIndex =
                 e.deltaY > 0
@@ -75,11 +74,14 @@ export default function HomePage() {
                             autoPlay
                             loop
                             muted
+                            preload="auto"
                         />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
-                        <h1 className={styles.title}>HOLD DEG UNNA FLASKA NÅR DU SKAL KJØRE</h1>
+                        <h1 className={styles.title}>
+                            HOLD DEG UNNA FLASKA NÅR DU SKAL KJØRE
+                        </h1>
                     </motion.div>
                 </section>
             </div>
@@ -87,12 +89,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="characters">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={bar}
-                            autoPlay
-                            loop
-                            muted
-                        />
+                        <video src={bar} autoPlay loop muted preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
@@ -106,12 +103,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="evening">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={car}
-                            autoPlay
-                            loop
-                            muted
-                        />
+                        <video src={car} autoPlay loop muted preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
@@ -125,12 +117,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="crash">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={drink}
-                            autoPlay
-                            loop
-                            muted
-                        />
+                        <video src={drink} autoPlay loop muted preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
@@ -144,12 +131,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="aftermath">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video
-                            src={crash}
-                            autoPlay
-                            loop
-                            muted
-                        />
+                        <video src={crash} autoPlay loop muted preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
