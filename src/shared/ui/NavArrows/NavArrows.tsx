@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import styles from './nav-arrows.module.scss'
 import type { INavArrowsProps } from '@/shared/types/interfaces'
-import  useLenis  from '@/app/context'
+import useLenis from '@/app/context'
 
 export default function NavArrows({
     sections,
@@ -56,7 +56,7 @@ export default function NavArrows({
         }
 
         const nextIndex = currentIndex + 1
-        if (nextIndex >= sections.length) return 
+        if (nextIndex >= sections.length) return
 
         const el = document.getElementById(sections[nextIndex])
         if (!el) return

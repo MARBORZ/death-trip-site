@@ -59,15 +59,19 @@
 .articles {
     background-color: $color-bg;
     padding: $space-section 0;
+
+    @media (min-width: 768px) {
+        padding: $space-2xl 0;
+    }
 }
 
 .articlesInner {
     max-width: 65ch;
     margin: 0 auto;
-    padding: 0 $space-md;
+    padding: $space-lg;
 
     @media (min-width: 768px) {
-        padding: 0 $space-lg;
+        padding: $space-xl;
     }
 }
 
@@ -124,7 +128,7 @@
 
 .pullQuote {
     margin: $space-md 0;
-    padding: $space-sm $space-md;
+    padding: $space-md;
     font-size: 1rem;
     font-style: italic;
     font-weight: 600;
