@@ -4,10 +4,10 @@
     position: fixed;
     bottom: 2rem;
     z-index: 100;
-    
+
     // Сброс дефолтных стилей кнопки
     cursor: pointer;
-    color: white; 
+    color: white;
 
     background-color: transparent;
     border: none;
@@ -30,11 +30,9 @@
         left: calc(95% - 2rem);
         transform: translateX(0) rotate(180deg);
 
-        @media (max-width: 768px) {
-            // На мобилках лучше оставить в центре или просто скрыть
+        @media (max-width: 1024px) {
             left: 50%;
-            transform: translateX(-50%);
-            opacity: 0.5;
+            transform: translateX(-50%) rotate(180deg); // остаётся в центре, но поворачивается
         }
     }
 
@@ -46,4 +44,5 @@
     &:hover {
         opacity: 0.8;
     }
+
 }

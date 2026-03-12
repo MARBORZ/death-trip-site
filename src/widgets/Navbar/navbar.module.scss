@@ -23,7 +23,7 @@
 .navLinks {
     display: flex;
     filter: drop-shadow(0 0 1px rgb(0, 0, 0));
-    gap: $space-lg;
+    gap: $space-md;
 
     a {
         color: $color-text-secondary;

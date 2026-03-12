@@ -37,9 +37,14 @@
 .heroContent {
     position: relative;
     z-index: 2;
-    padding: $space-xl;
-    padding-bottom: $space-2xl;
     width: 100%;
+    padding: $space-md;
+    padding-bottom: $space-xl;
+
+    @media (min-width: 768px) {
+        padding: $space-xl;
+        padding-bottom: $space-2xl;
+    }
 }
 
 .heroTitle {
@@ -60,7 +65,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: $space-2xl $space-lg;
+    padding: $space-xl $space-md;
+
+    @media (min-width: 768px) {
+        padding: $space-2xl $space-lg;
+    }
 }
 
 .contactInner {
@@ -77,19 +86,31 @@
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     color: $color-text-primary;
     line-height: 1.8;
-    margin-bottom: $space-xl;
+    margin-bottom: $space-lg;
     text-align: left;
-    padding: $space-lg 0;
+    padding: $space-md 0;
+    padding-left: $space-md;
     border-left: 2px solid $color-accent-light;
-    padding-left: $space-lg;
+
+    @media (min-width: 768px) {
+        margin-bottom: $space-xl;
+        padding: $space-lg 0;
+        padding-left: $space-lg;
+    }
 }
 
 .links {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $space-md;
-    margin-bottom: $space-xl;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    margin-bottom: $space-lg;
+
+    @media (min-width: 768px) {
+        gap: $space-md;
+        margin-bottom: $space-xl;
+    }
 
     & > a > span {
         padding: $space-sm;
