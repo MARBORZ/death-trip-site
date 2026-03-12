@@ -12,7 +12,6 @@ export default function NavArrows({
 
     const lenis = useLenis()
 
-    // isFooterVisible logic
     useEffect(() => {
         const footer = document.querySelector('footer')
         const spectateFooter = new IntersectionObserver(
@@ -57,10 +56,10 @@ export default function NavArrows({
         }
 
         const nextIndex = currentIndex + 1
-        if (nextIndex >= sections.length) return // ← защита
+        if (nextIndex >= sections.length) return 
 
         const el = document.getElementById(sections[nextIndex])
-        if (!el) return // ← защита
+        if (!el) return
 
         lenis?.scrollTo(el, {
             duration: 1.2,

@@ -18,12 +18,14 @@
     filter: drop-shadow(0 0 1px rgb(0, 0, 0));
     letter-spacing: 0.05em;
     color: $color-text-primary;
+    text-decoration: none;
+    z-index: 101;
 }
 
 .navLinks {
     display: flex;
-    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
     gap: $space-md;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
 
     a {
         color: $color-text-secondary;
@@ -36,5 +38,65 @@
         &:hover {
             color: $color-text-primary;
         }
+    }
+
+    @media (max-width: 768px) {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: $color-bg;
+        gap: $space-xl;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity $transition-medium;
+        filter: none;
+        z-index: 100;
+
+        a {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.navLinksOpen {
+    @media (max-width: 768px) {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    z-index: 101;
+
+    span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: $color-text-primary;
+        transition: transform $transition-medium, opacity $transition-medium;
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+    }
+}
+
+.overlay {
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 99;
     }
 }
