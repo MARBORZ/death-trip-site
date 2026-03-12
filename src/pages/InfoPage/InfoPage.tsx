@@ -40,7 +40,7 @@ export default function InfoPage() {
 				</div>
 				<div className={styles.heroOverlay} />
 				<motion.div {...heroAnimation} className={styles.heroContent}>
-					<h1 className={styles.heroTitle}>INFOMARSJON</h1>
+					<h1 className={styles.heroTitle}>INFORMARSJON</h1>
 				</motion.div>
 			</section>
 

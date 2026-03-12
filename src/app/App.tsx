@@ -3,7 +3,7 @@ import HomePage from '../pages/HomePage/HomePage'
 import ContactPage from '../pages/ContactPage/ContactPage'
 import InfoPage from '../pages/InfoPage/InfoPage'
 import Layout from '@/widgets/Layout'
-import ScrollToTop from '@/shared/ui/ScrollToTop'
+import ScrollToTop from '@/shared/ScrollToTop'
 
 export default function App() {
     return (

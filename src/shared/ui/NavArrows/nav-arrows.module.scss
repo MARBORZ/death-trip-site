@@ -3,9 +3,8 @@
 .button {
     position: fixed;
     bottom: 2rem;
-    z-index: 100;
+    z-index: 99;
 
-    // Сброс дефолтных стилей кнопки
     cursor: pointer;
     color: white;
 
@@ -14,25 +13,22 @@
     filter: drop-shadow(0 0 8.5px rgb(0, 0, 0));
 
 
-    // Начальное состояние: цент10
+
     left: 50%;
     transform: translateX(-50%);
 
-    // Плавный переход для всех состояний
-    // Используем плавный выезд (Out-Quart)
     transition:
         left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
         transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
         opacity 0.3s ease;
 
-    // Когда виден футер — улетаем в угол
     &[data-footer-visible='true'] {
         left: calc(95% - 2rem);
         transform: translateX(0) rotate(180deg);
 
         @media (max-width: 1024px) {
             left: 50%;
-            transform: translateX(-50%) rotate(180deg); // остаётся в центре, но поворачивается
+            transform: translateX(-50%) rotate(180deg); 
         }
     }
 

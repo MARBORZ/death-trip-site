@@ -1,6 +1,5 @@
 @use '@/app/styles/variables' as *;
 
-// Base section
 .sectionWrapper {
     height: 300vh;
     margin-top: -100vh;
@@ -9,16 +8,14 @@
         margin-top: 0;
     }
 
-    // Dynamic Z-index to stack sections as you scroll
     @for $i from 2 through 6 {
         &:nth-child(#{$i}) {
             z-index: #{$i - 1};
         }
     }
 
-    // Ensure the last section resets height if needed
     &:last-child {
-        height: 100vh; 
+        height: 100vh;
     }
 }
 
@@ -28,17 +25,17 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    display: flex; // Added to help align children if needed
+    display: flex;
 }
 
-// Media container (Works for both <img> and <video>)
-.containerImg, 
+.containerImg,
 .containerVideo {
     position: absolute;
     inset: 0;
     z-index: 0;
 
-    img, video {
+    img,
+    video {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -47,55 +44,52 @@
 }
 
 .overlay {
-    position: absolute; 
+    position: absolute;
     inset: 0;
     background: $color-overlay;
     z-index: 1;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
-// Text block (NRK style: bottom right)
 .textBlock {
     position: absolute;
-    bottom: $space-xl;
-    right: $space-xl;
-    z-index: 10; 
+    bottom: $space-2xl;
+    left: $space-md;
+    right: $space-md;
+    z-index: 10;
     color: $color-text-primary;
-    max-width: 1000px;
-    text-align: right;
+    text-align: left;
+
+    @media (min-width: 768px) {
+        bottom: $space-xl;
+        left: auto;
+        right: $space-xl;
+        max-width: 1000px;
+        text-align: right;
+    }
 }
 
 .title {
     font-size: $font-size-hero;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: $space-md;
+    margin-bottom: $space-sm;
     text-transform: uppercase;
     letter-spacing: -0.01em;
+
+    @media (min-width: 768px) {
+        margin-bottom: $space-md;
+    }
 }
 
 .description {
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    line-height: 2.6;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    line-height: 1.8;
     color: #ffffff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
-}
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin: 0;
 
-
-// MEDIA QUERY
-
-@media (max-width: 700px) {
-    .textBlock{
-        text-align: left;
-        max-width: 700px;
-        right: inherit;
-        margin: $space-lg;
-        bottom: $space-xl;
-    }
-    
-    p{
-        margin: 0;
+    @media (min-width: 768px) {
+        line-height: 2.6;
     }
 }
-
-
