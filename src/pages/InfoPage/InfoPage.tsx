@@ -38,8 +38,11 @@ export default function InfoPage() {
 		<div className={styles.heroImage}>
 		<img
 		src={alcohol}
-		alt="Informasjon om rus og trafikk"
+		alt="Informasjon"
 		/>
+					<span className={styles.imageCredit}>
+						Photo by Adam Wilson on Unsplash
+					</span>
 		</div>
 		<div className={styles.heroOverlay} />
 		<motion.div {...heroAnimation} className={styles.heroContent}>

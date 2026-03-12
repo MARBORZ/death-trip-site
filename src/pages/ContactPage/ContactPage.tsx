@@ -26,6 +26,9 @@ export default function ContactPage() {
                         src={contact}
                         alt="Kontakt"
                     />
+					<span className={styles.imageCredit}>
+						Photo by Melinda Gimpel on Unsplash
+					</span>
                 </div>
                 <div className={styles.heroOverlay} />
                 <motion.div {...heroAnimation} className={styles.heroContent}>
