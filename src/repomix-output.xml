@@ -1,0 +1,1683 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+app/App.tsx
+app/context/index.ts
+app/context/useLenis.tsx
+app/providers/index.ts
+app/providers/LenisProvider.tsx
+app/styles/global.scss
+app/styles/index.scss
+app/styles/variables.scss
+assets/images/alcohol.jpg
+assets/images/contact.jpg
+assets/logos/deathtrip-logo.png
+assets/logos/ung-i-trafikken.png
+assets/videos/bar.mp4
+assets/videos/car.mp4
+assets/videos/crash.mp4
+assets/videos/drink.mp4
+assets/videos/main.mp4
+features/contact-form/api/send-contact.ts
+features/contact-form/model/index.ts
+features/contact-form/model/useContactForm.tsx
+features/contact-form/ui/contact-form.module.scss
+features/contact-form/ui/ContactForm.tsx
+features/contact-form/ui/index.ts
+main.tsx
+pages/ContactPage/contact-page.module.scss
+pages/ContactPage/ContactPage.tsx
+pages/HomePage/home-page.module.scss
+pages/HomePage/HomePage.tsx
+pages/InfoPage/info-page.module.scss
+pages/InfoPage/InfoPage.tsx
+shared/ScrollToTop/index.ts
+shared/ScrollToTop/ScrollToTop.tsx
+shared/types/interfaces.ts
+shared/ui/NavArrows/index.ts
+shared/ui/NavArrows/nav-arrows.module.scss
+shared/ui/NavArrows/NavArrows.tsx
+widgets/Footer/footer.module.scss
+widgets/Footer/Footer.tsx
+widgets/Footer/index.ts
+widgets/Layout/index.tsx
+widgets/Layout/Layout.tsx
+widgets/Navbar/index.tsx
+widgets/Navbar/navbar.module.scss
+widgets/Navbar/Navbar.tsx
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="app/App.tsx">
+import { BrowserRouter, Routes, Route } from 'react-router'
+import HomePage from '../pages/HomePage/HomePage'
+import ContactPage from '../pages/ContactPage/ContactPage'
+import InfoPage from '../pages/InfoPage/InfoPage'
+import Layout from '@/widgets/Layout'
+import ScrollToTop from '@/shared/ScrollToTop'
+
+export default function App() {
+    return (
+            <BrowserRouter>
+                <Layout>
+                    <ScrollToTop />
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/info" element={<InfoPage />} />
+                        <Route path="/contacts" element={<ContactPage />} />
+                    </Routes>
+                </Layout>
+            </BrowserRouter>
+    )
+}
+</file>
+
+<file path="app/context/index.ts">
+export { default } from './useLenis'
+</file>
+
+<file path="app/context/useLenis.tsx">
+import type Lenis from 'lenis'
+import { createContext, useContext } from 'react'
+
+export const LenisContext = createContext<Lenis | null>(null)
+
+export default function useLenis() {
+    return useContext(LenisContext)
+}
+</file>
+
+<file path="app/providers/index.ts">
+export { default } from './LenisProvider'
+</file>
+
+<file path="app/providers/LenisProvider.tsx">
+import Lenis from 'lenis'
+import { useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
+import { LenisContext } from '../context/useLenis'
+
+export default function LenisProvider({ children }: { children: ReactNode }) {
+    const [lenis, setLenis] = useState<Lenis | null>(null)
+
+    useEffect(() => {
+        const lenis = new Lenis()
+        setLenis(lenis)
+
+        function raf(time: number) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+
+        return () => lenis.destroy()
+    }, [])
+
+    return (
+        <LenisContext.Provider value={lenis}>
+            {children}
+        </LenisContext.Provider>
+    )
+}
+</file>
+
+<file path="app/styles/global.scss">
+@use './variables' as *;
+
+// paste normalize above...
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-bg;
+    color: $color-text-primary;
+    font-family: $font-primary;
+    font-size: $font-size-body;
+}
+
+h1, h2, h3 {
+    font-family: $font-heading;
+}
+
+img, video {
+    max-width: 100%;
+    display: block;
+}
+
+main, body {
+    margin: 0;
+    padding: 0;
+}
+</file>
+
+<file path="app/styles/index.scss">
+@use './global.scss';
+@use './variables.scss';
+</file>
+
+<file path="app/styles/variables.scss">
+// Colors
+$color-bg: #0a0e1a;
+$color-bg-secondary: #0f1628;
+$color-bg-tertiary: #05070c;
+$color-surface: #151d35;
+$color-accent: #1e3a8a;
+$color-accent-light: #7ca6e9;
+$color-text-primary: #f0f4ff;
+$color-text-secondary: #8899cc;
+$color-overlay: rgba(10, 14, 26, 0.363);
+$color-transparent: rgb(107, 107, 107);
+
+// Typography
+$font-primary: 'DM Sans', sans-serif;
+$font-heading: "Plus Jakarta Sans", sans-serif;
+$font-size-hero: clamp(1rem, 6vw, 5rem);
+$font-size-title: clamp(1.5rem, 4vw, 3rem);
+$font-size-body: clamp(1.2rem, 2vw, 1.5rem);
+
+// Spacing
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 2rem;
+$space-xl: 4rem;
+$space-2xl: 6rem;
+$space-section: clamp(4rem, 10vh, 10rem);
+
+// Transitions
+$transition-slow: 0.8s ease;
+$transition-medium: 0.4s ease;
+</file>
+
+<file path="features/contact-form/api/send-contact.ts">
+import dotenv from "dotenv"
+dotenv.config()
+
+import type { IContactFields } from '@/shared/types/interfaces';
+
+const URL = import.meta.env.MODE === 'production'
+  ? `${import.meta.env.VITE_API_URL}/api/contact`
+  : `${import.meta.env.VITE_TEST_URL}/api/contact`
+
+export const sendContactEmail = async (data: IContactFields) => {
+  const response = await fetch(URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error('Error');
+  }
+
+  return response.json();
+};
+</file>
+
+<file path="features/contact-form/model/index.ts">
+export { useContactForm } from './useContactForm'
+</file>
+
+<file path="features/contact-form/model/useContactForm.tsx">
+import { useState } from 'react'
+import type { SubmitEventHandler } from 'react';
+import type { IContactFields } from '@/shared/types/interfaces';
+import { sendContactEmail } from '../api/send-contact';
+
+export const useContactForm = () => {
+    const [status, setStatus] = useState('idle');
+
+    const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
+        e.preventDefault();
+        setStatus('loading')
+
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData) as unknown as IContactFields;
+
+        try {
+            await sendContactEmail(data);
+            setStatus('success')
+            setTimeout(() => setStatus('idle'), 3000)
+            e.currentTarget.reset();
+        } catch (err) {
+            setStatus('error')
+            console.error(err instanceof Error ? err.message : 'Error');
+        }
+    };
+
+    return { handleSubmit, status };
+};
+</file>
+
+<file path="features/contact-form/ui/contact-form.module.scss">
+@use '@/app/styles/variables' as * ;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+}
+
+.label {
+    font-family: $font-primary;
+    font-size: 0.9rem;
+    color: $color-text-secondary;
+    font-weight: 500;
+}
+
+.input,
+.textarea {
+    background-color: $color-surface;
+    border: 1px solid rgba($color-accent-light, 0.2);
+    border-radius: 8px;
+    padding: $space-md;
+    font-family: $font-primary;
+    font-size: 1rem;
+    color: $color-text-primary;
+    transition: border-color $transition-medium;
+
+    &:focus {
+        outline: none;
+        border-color: $color-accent-light;
+    }
+
+    &::placeholder {
+        color: $color-text-secondary;
+        font-family: $font-heading;
+        font-style: normal;
+        opacity: .5;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.button {
+    background-color: $color-accent;
+    color: $color-text-primary;
+    border: none;
+    border-radius: 8px;
+    padding: $space-md $space-lg;
+    font-family: $font-primary;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-medium;
+    text-align: center;
+
+    &:hover {
+        background-color: #000;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+</file>
+
+<file path="features/contact-form/ui/ContactForm.tsx">
+import { useContactForm } from '../model'
+import styles from './contact-form.module.scss'
+
+export default function ContactForm() {
+    const { handleSubmit, status  } = useContactForm()
+
+    return (
+        <form
+            className={styles.form}
+            onSubmit={handleSubmit}
+        >
+            <div className={styles.field}>
+                <label htmlFor="name" className={styles.label}>
+                    Navn
+                </label>
+
+                <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    className={styles.input}
+                    placeholder="Ditt navn"
+                />
+            </div>
+
+            <div className={styles.field}>
+                <label htmlFor="email" className={styles.label}>
+                    E-post
+                </label>
+
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className={styles.input}
+                    placeholder="din@epost.no"
+                />
+            </div>
+
+            <div className={styles.field}>
+                <label
+                    htmlFor="message"
+                    className={styles.label}
+                >
+                    Melding
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    className={styles.textarea}
+                    placeholder="Skriv din melding her..."
+                />
+            </div>
+
+            {status === 'success' && <span>Skjemaet er sendt!</span>}
+            {status === 'error' && <span>Noe gikk galt</span>}
+            {status === 'loading' && <span>Sender...</span>}
+
+            <button
+                type="submit"
+                className={styles.button}
+            >
+                Send melding
+            </button>
+        </form>
+    )
+}
+</file>
+
+<file path="features/contact-form/ui/index.ts">
+export { default } from './ContactForm'
+</file>
+
+<file path="main.tsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './app/App'
+import LenisProvider from './app/providers'
+import './app/styles/index.scss'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <LenisProvider>
+      <App />
+    </LenisProvider>
+  </StrictMode>
+)
+</file>
+
+<file path="pages/ContactPage/contact-page.module.scss">
+@use '@/app/styles/variables' as *;
+
+// Hero Section
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.heroImage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to top,
+        rgba(10, 14, 26, 0.85) 0%,
+        rgba(10, 14, 26, 0.4) 40%,
+        rgba(10, 14, 26, 0.2) 100%
+    );
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: $space-md;
+    padding-bottom: $space-xl;
+
+    @media (min-width: 768px) {
+        padding: $space-xl;
+        padding-bottom: $space-2xl;
+    }
+}
+
+.heroTitle {
+    font-family: $font-heading;
+    font-size: $font-size-hero;
+    font-weight: 700;
+    color: $color-text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $space-lg;
+    line-height: 1;
+}
+
+// Contact Section
+.contact {
+    background-color: $color-bg;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-xl $space-md;
+
+    @media (min-width: 768px) {
+        padding: $space-2xl $space-lg;
+    }
+}
+
+.contactInner {
+    width: 100%;
+    max-width: 600px;
+}
+
+.contactContent {
+    width: 100%;
+}
+
+.intro {
+    font-family: $font-heading;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: $color-text-primary;
+    line-height: 1.8;
+    margin-bottom: $space-lg;
+    text-align: left;
+    padding: $space-md 0;
+    padding-left: $space-md;
+    border-left: 2px solid $color-accent-light;
+
+    @media (min-width: 768px) {
+        margin-bottom: $space-xl;
+        padding: $space-lg 0;
+        padding-left: $space-lg;
+    }
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    margin-bottom: $space-lg;
+
+    @media (min-width: 768px) {
+        gap: $space-md;
+        margin-bottom: $space-xl;
+    }
+
+    & > a > span {
+        padding: $space-sm;
+    }
+}
+</file>
+
+<file path="pages/ContactPage/ContactPage.tsx">
+import styles from './contact-page.module.scss'
+import { motion } from 'motion/react'
+import contact from '@/assets/images/contact.jpg'
+import ContactForm from '@/features/contact-form/ui'
+
+export default function ContactPage() {
+    const heroAnimation = {
+        initial: { opacity: 0, y: 60 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 1.2, ease: 'easeOut' as const },
+        viewport: { once: true },
+    }
+
+    const contentAnimation = {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 0.8, delay: 0.2 },
+        viewport: { once: true, margin: '-100px' },
+    }
+
+    return (
+        <>
+            <section className={styles.hero}>
+                <div className={styles.heroImage}>
+                    <img
+                        src={contact}
+                        alt="Kontakt"
+                    />
+                </div>
+                <div className={styles.heroOverlay} />
+                <motion.div {...heroAnimation} className={styles.heroContent}>
+                    <h1 className={styles.heroTitle}>KONTAKT</h1>
+                </motion.div>
+            </section>
+
+            <section className={styles.contact}>
+                <div className={styles.contactInner}>
+                    <motion.div
+                        {...contentAnimation}
+                        className={styles.contactContent}
+                    >
+                        <p className={styles.intro}>
+                          Lurer du på noe om produktene våre, eller vil du bare si hei? 
+                        </p>
+                        <div className={styles.links}>
+                            <a
+                                href="mailto:masuevamadi@gmail.com"
+                                className={styles.link}
+                            >
+                                {/* <span className={styles.linkIcon}>✉</span> */}
+                                masuevamadi@gmail.com 
+                            </a>
+                        </div>
+
+                        <ContactForm />
+                    </motion.div>
+                </div>
+            </section>
+        </>
+    )
+}
+</file>
+
+<file path="pages/HomePage/home-page.module.scss">
+@use '@/app/styles/variables' as *;
+
+.sectionWrapper {
+    height: 300vh;
+    margin-top: -100vh;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    @for $i from 2 through 6 {
+        &:nth-child(#{$i}) {
+            z-index: #{$i - 1};
+        }
+    }
+
+    &:last-child {
+        height: 100vh;
+    }
+}
+
+.section {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+.containerImg,
+.containerVideo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img,
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        display: block;
+    }
+}
+
+.overlay {
+    position: absolute; 
+    inset: 0;
+    background: $color-overlay;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.textBlock {
+    position: absolute;
+    bottom: $space-2xl;
+    left: $space-md;
+    right: $space-md;
+    z-index: 10;
+    color: $color-text-primary;
+    text-align: left;
+
+    @media (min-width: 768px) {
+        bottom: $space-xl;
+        left: auto;
+        right: $space-xl;
+        max-width: 1000px;
+        text-align: right;
+    }
+}
+
+.title {
+    font-size: $font-size-hero;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: $space-sm;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+
+    @media (min-width: 768px) {
+        margin-bottom: $space-md;
+    }
+}
+
+.description {
+    font-size: $font-size-body;
+    line-height: 1.8;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin: 0;
+
+    @media (min-width: 768px) {
+        line-height: 2.6;
+    }
+}
+</file>
+
+<file path="pages/HomePage/HomePage.tsx">
+import NavArrows from '@/shared/ui/NavArrows'
+import styles from './home-page.module.scss'
+import { motion } from 'motion/react'
+import useLenis from '@/app/context'
+import { useEffect, useState, useRef } from 'react'
+import mainVideo from '@/assets/videos/main.mp4'
+import bar from '@/assets/videos/bar.mp4'
+import car from '@/assets/videos/car.mp4'
+import drink from '@/assets/videos/drink.mp4'
+import crash from '@/assets/videos/crash.mp4'
+
+
+const sections = [
+    'hero',
+    'characters',
+    'evening',
+    'crash',
+    'aftermath',
+    'footer',
+]
+
+export default function HomePage() {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const lenis = useLenis()
+
+    const textAnimation = {
+        initial: { opacity: 0, y: 50 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 0.8 },
+    }
+
+    // Wheel event Function
+    const isScrolling = useRef(false)
+
+    useEffect(() => {
+        const handleWheel = (e: WheelEvent) => {
+            if (e.deltaY > 0 && currentIndex >= sections.length - 1) return
+            e.preventDefault()
+            if (isScrolling.current) return 
+
+            const nextIndex =
+                e.deltaY > 0
+                    ? Math.min(currentIndex + 1, sections.length - 1)
+                    : Math.max(currentIndex - 1, 0)
+
+            const el = document.getElementById(sections[nextIndex])
+            isScrolling.current = true
+            lenis?.scrollTo(el ?? 0, {
+                duration: 2.5,
+                easing: (t) => 1 - Math.pow(1 - t, 5),
+                onComplete: () => {
+                    isScrolling.current = false
+                },
+            })
+            setCurrentIndex(nextIndex)
+        }
+
+        window.addEventListener('wheel', handleWheel, { passive: false })
+        return () => window.removeEventListener('wheel', handleWheel)
+    }, [currentIndex, lenis])
+
+    return (
+        <>
+            <NavArrows
+                sections={sections}
+                currentIndex={currentIndex}
+                onIndexChange={setCurrentIndex}
+            />
+            <div className={styles.sectionWrapper} id="hero">
+                <section className={styles.section}>
+                    <div className={styles.containerImg}>
+                        <video
+                            src={mainVideo}
+                            autoPlay
+                            loop
+                            muted
+                        />
+                    </div>
+                    <div className={styles.overlay} />
+                    <motion.div {...textAnimation} className={styles.textBlock}>
+                        <h1 className={styles.title}>HOLD DEG UNNA FLASKA NÅR DU SKAL KJØRE</h1>
+                    </motion.div>
+                </section>
+            </div>
+
+            <div className={styles.sectionWrapper} id="characters">
+                <section className={styles.section}>
+                    <div className={styles.containerImg}>
+                        <video
+                            src={bar}
+                            autoPlay
+                            loop
+                            muted
+                        />
+                    </div>
+                    <div className={styles.overlay} />
+                    <motion.div {...textAnimation} className={styles.textBlock}>
+                        <p className={styles.description}>
+                            Fire venner. En dag. Et valg.
+                        </p>
+                    </motion.div>
+                </section>
+            </div>
+
+            <div className={styles.sectionWrapper} id="evening">
+                <section className={styles.section}>
+                    <div className={styles.containerImg}>
+                        <video
+                            src={car}
+                            autoPlay
+                            loop
+                            muted
+                        />
+                    </div>
+                    <div className={styles.overlay} />
+                    <motion.div {...textAnimation} className={styles.textBlock}>
+                        <p className={styles.description}>
+                            Dagen startet som alle andre.
+                        </p>
+                    </motion.div>
+                </section>
+            </div>
+
+            <div className={styles.sectionWrapper} id="crash">
+                <section className={styles.section}>
+                    <div className={styles.containerImg}>
+                        <video
+                            src={drink}
+                            autoPlay
+                            loop
+                            muted
+                        />
+                    </div>
+                    <div className={styles.overlay} />
+                    <motion.div {...textAnimation} className={styles.textBlock}>
+                        <p className={styles.description}>
+                            Så tok det bare sekunder.
+                        </p>
+                    </motion.div>
+                </section>
+            </div>
+
+            <div className={styles.sectionWrapper} id="aftermath">
+                <section className={styles.section}>
+                    <div className={styles.containerImg}>
+                        <video
+                            src={crash}
+                            autoPlay
+                            loop
+                            muted
+                        />
+                    </div>
+                    <div className={styles.overlay} />
+                    <motion.div {...textAnimation} className={styles.textBlock}>
+                        <p className={styles.description}>
+                            Døden er for alltid.
+                        </p>
+                    </motion.div>
+                </section>
+            </div>
+        </>
+    )
+}
+</file>
+
+<file path="pages/InfoPage/info-page.module.scss">
+@use '@/app/styles/variables' as *;
+
+// Hero Section
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.heroImage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(10, 14, 26, 0.9) 0%,
+            rgba(10, 14, 26, 0.4) 50%,
+            rgba(10, 14, 26, 0.2) 100%);
+    z-index: 1;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    padding: $space-lg;
+    padding-bottom: $space-xl;
+
+    @media (min-width: 768px) {
+        padding: $space-xl;
+        padding-bottom: $space-2xl;
+    }
+}
+
+.heroTitle {
+    font-family: $font-heading;
+    font-size: $font-size-hero;
+    font-weight: 700;
+    color: $color-text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $space-lg;
+    line-height: 1;
+}
+
+// Articles Section
+.articles {
+    background-color: $color-bg;
+    padding: $space-section 0;
+
+    @media (min-width: 768px) {
+        padding: $space-2xl 0;
+    }
+}
+
+.articlesInner {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: $space-lg;
+
+    @media (min-width: 768px) {
+        padding: $space-xl;
+    }
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    padding: $space-lg 0;
+    border-bottom: 1px solid rgba(240, 244, 255, 0.15);
+
+    @media (min-width: 768px) {
+        padding: $space-2xl 0;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    p {
+        color: $color-text-primary;
+        font-size: 1rem;
+        line-height: 1.75;
+        letter-spacing: 0.01em;
+        word-spacing: 0.05em;
+        margin-bottom: $space-md;
+
+        @media (min-width: 768px) {
+            font-size: clamp(1.1rem, 1.5vw, 1.15rem);
+            line-height: 2;
+            letter-spacing: 0.02em;
+            word-spacing: 0.1em;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.articleHeading {
+    font-size: clamp(1.3rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $color-text-primary;
+    margin-bottom: $space-md;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+
+    @media (min-width: 768px) {
+        letter-spacing: 0.03em;
+        line-height: 1.4;
+        margin-bottom: $space-lg;
+    }
+}
+
+.pullQuote {
+    margin: $space-md 0;
+    padding: $space-md;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: $color-accent-light;
+    border-left: 3px solid $color-accent-light;
+    background: rgba(240, 244, 255, 0.05);
+    border-radius: 0 4px 4px 0;
+
+    @media (min-width: 768px) {
+        margin: $space-xl 0;
+        padding: $space-lg $space-xl;
+        font-size: clamp(1.15rem, 2vw, 1.4rem);
+        line-height: 1.8;
+        letter-spacing: 0.02em;
+        color: $color-text-primary;
+    }
+}
+</file>
+
+<file path="pages/InfoPage/InfoPage.tsx">
+import styles from './info-page.module.scss'
+import { motion } from 'motion/react'
+import NavArrows from '@/shared/ui/NavArrows'
+import { useState } from 'react'
+import alcohol from '@/assets/images/alcohol.jpg'
+
+const sections = ['hero', 'intro', 'statistics', 'alcohol', 'footer']
+
+export default function InfoPage() {
+	const [currentIndex, setCurrentIndex] = useState(0)
+
+	const heroAnimation = {
+		initial: { opacity: 0, y: 60 },
+		whileInView: { opacity: 1, y: 0 },
+		transition: { duration: 1.2, ease: 'easeOut' as const },
+	}
+
+	const articleAnimation = {
+		initial: { opacity: 0, y: 40 },
+		whileInView: { opacity: 1, y: 0 },
+		transition: { duration: 0.8 },
+		viewport: { once: true, margin: '-100px' },
+	}
+
+	return (
+		<>
+			<NavArrows
+				sections={sections}
+				currentIndex={currentIndex}
+				onIndexChange={setCurrentIndex}
+			/>
+
+			{/* Hero Section */}
+			<section className={styles.hero} id='hero'>
+				<div className={styles.heroImage}>
+					<img
+						src={alcohol}
+						alt="Informasjon om rus og trafikk"
+					/>
+				</div>
+				<div className={styles.heroOverlay} />
+				<motion.div {...heroAnimation} className={styles.heroContent}>
+					<h1 className={styles.heroTitle}>INFORMASJON</h1>
+				</motion.div>
+			</section>
+
+			{/* Article Section */}
+			<section className={styles.articles}>
+				<div className={styles.articlesInner}>
+					{/* Intro */}
+					<motion.article
+						{...articleAnimation}
+						className={styles.article}
+						id="intro"
+					>
+						<h2 className={styles.articleHeading}>
+							Legg vekk flaska når du skjører
+						</h2>
+
+						<blockquote className={styles.pullQuote}>
+							Hva skjer i videoen?
+						</blockquote>
+
+						<p>
+							Videoen starter i en mørk bar. Vi ser en ung gutt i hvit genser som tydelig har drukket altfor mye. Han henger over et bord dekket av tomme bokser og en flaske sprit. Han klarer knapt å holde hodet oppe, men likevel tar han det fatale valget om å sette seg bak rattet.
+							Deretter ser vi den skremmende virkeligheten av det valget. En bil full av venner, en sjåfør som ikke har kontroll, og så – kaos. Kameraet rister, kropper blir kastet rundt, og alt blir mørkt. Det er en voldsom, rystende bilulykke.
+							Men så "spoles" videoen tilbake. Vi ser den samme vennegjengen, men denne gangen er de trygge. De sitter i en parkert bil, ler, filmer en tullevideo og nyter øyeblikket. De valgte en annen vei, og på grunn av det, får de reise hjem.
+						</p>
+						<p>
+							Hvorfor skjedde dette?
+
+							Denne videoen er laget for å vise illusjonen av kontroll. Når du har drukket, føler du kanskje at du har "kontroll" eller at det "bare er en kort kjøretur." Videoen fanger det ene sekundet der en gøy kveld på byen blir til en dødelig feil fordi noen undervurderte alkoholens påvirkning.
+						</p>
+						<blockquote className={styles.pullQuote}>
+							«Russetiden skal være en feiring av livet — ikke en
+							risiko for å miste det.»
+						</blockquote>
+						<p>
+							Hva er moralen?
+
+							Livet ditt – og vennene dines liv – er verdt mer enn en drosjeregning eller en telefonsamtale etter skyss. Moralen er at promille ikke bare handler om hvordan du føler deg; det handler om hva du ikke lenger er i stand til å gjøre. Du kan ikke reagere, du ser ikke klart,
+							og du kan ikke beskytte de du er glad i når du først har startet motoren.
+						</p>
+					</motion.article>
+
+					{/* Statistics */}
+					<motion.article
+						{...articleAnimation}
+						id="statistics"
+						className={styles.article}
+					>
+						<h2 className={styles.articleHeading}>
+							Tallene som teller
+						</h2>
+						<p>
+							Ifølge Statistisk sentralbyrå og Trygg Trafikk er
+							unge mellom 18 og 24 år den mest utsatte gruppen i
+							trafikken. I Norge dør i gjennomsnitt rundt 80–100
+							personer i trafikken hvert år, og unge sjåfører er
+							overrepresentert i statistikken. Omtrent 25 % av
+							alle trafikkdrepte er under 25 år.
+						</p>
+						<blockquote className={styles.pullQuote}>
+							«Hver fjerde person som dør i trafikken i Norge, er
+							under 25 år.»
+						</blockquote>
+						<p>
+							Under russetiden øker antallet ulykker merkbart.
+							Politiet rapporterer hvert år om alvorlige hendelser
+							knyttet til russefeiringen — fra singelulykker til
+							frontkollisjoner. I perioden 2010–2023 var det over
+							150 alvorlige trafikkhendelser direkte knyttet til
+							russetiden.
+						</p>
+						<p>
+							Det handler ikke bare om de som dør. Hundrevis av
+							unge mennesker sitter igjen med varige skader —
+							fysiske og psykiske — etter ulykker som kunne vært
+							unngått.
+						</p>
+					</motion.article>
+
+					{/* Alcohol */}
+					<motion.article
+						{...articleAnimation}
+						id="alcohol"
+						className={styles.article}
+					>
+						<h2 className={styles.articleHeading}>
+							Hvorfor er dette viktig?
+						</h2>
+						<p>
+
+							Dette er ikke bare en film; det er en virkelighet som skjer hver eneste dag.
+
+							Det handler om alternativet: Videoen viser oss at man kan ha det kjempegøy og være vill med venner uten å sette dem i en kiste.
+
+							Det handler om ansvar: Den minner oss på at hvis du ser
+							en venn strekke seg etter bilnøklene i fylla, så må du være den som stopper dem.
+						</p>
+						<blockquote className={styles.pullQuote}>
+							«Ved 0,5 promille er ulykkesrisikoen doblet. Ved 1,0
+							er den ti ganger så høy.»
+						</blockquote>
+						<p>
+							Konsekvensene av promillekjøring i Norge er
+							alvorlige: bøter opp til 150 000 kroner, fengsel i
+							opptil ett år, tap av førerkort i minst to år — og
+							et rulleblad som følger deg resten av livet. Men den
+							verste konsekvensen er den du aldri kan angre på: å
+							ta et liv.
+						</p>
+					</motion.article>
+				</div>
+			</section>
+		</>
+	)
+}
+</file>
+
+<file path="shared/ScrollToTop/index.ts">
+export { default } from './ScrollToTop'
+</file>
+
+<file path="shared/ScrollToTop/ScrollToTop.tsx">
+import useLenis from '@/app/context'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router'
+
+export default function ScrollToTop() {
+    const { pathname } = useLocation()
+    const lenis = useLenis()
+
+    useEffect(() => {
+        lenis?.scrollTo(0, { immediate: true })
+    }, [pathname, lenis])
+
+    return null
+}
+</file>
+
+<file path="shared/types/interfaces.ts">
+export interface INavArrowsProps {
+    sections: string[]
+    currentIndex: number
+    onIndexChange: (index: number) => void
+}
+export interface IContactFields {
+  name: string;
+  email: string;
+  message: string;
+}
+</file>
+
+<file path="shared/ui/NavArrows/index.ts">
+export { default } from './NavArrows'
+</file>
+
+<file path="shared/ui/NavArrows/nav-arrows.module.scss">
+@use '@/app/styles/variables.scss' as *;
+
+.button {
+    position: fixed;
+    bottom: 2rem;
+    z-index: 99;
+
+    cursor: pointer;
+    color: white;
+
+    background-color: transparent;
+    border: none;
+    filter: drop-shadow(0 0 8.5px rgb(0, 0, 0));
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    transition:
+        left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+        opacity 0.3s ease;
+
+    &[data-footer-visible='true'] {
+        left: calc(95% - 2rem);
+        transform: translateX(0) rotate(180deg);
+
+        @media (max-width: 1024px) {
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+        }
+    }
+
+    .icon {
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+}
+</file>
+
+<file path="shared/ui/NavArrows/NavArrows.tsx">
+import { useEffect, useState, useCallback } from 'react'
+import styles from './nav-arrows.module.scss'
+import type { INavArrowsProps } from '@/shared/types/interfaces'
+import useLenis from '@/app/context'
+
+export default function NavArrows({
+    sections,
+    currentIndex,
+    onIndexChange,
+}: INavArrowsProps) {
+    const [isFooterVisible, setIsFooterVisible] = useState(false)
+
+    const lenis = useLenis()
+
+    useEffect(() => {
+        const footer = document.querySelector('footer')
+        const spectateFooter = new IntersectionObserver(
+            (entries) => {
+                setIsFooterVisible(entries[0].isIntersecting)
+            },
+            { threshold: 0.2 }
+        )
+
+        if (footer) spectateFooter.observe(footer)
+
+        return () => spectateFooter.disconnect()
+    }, [])
+
+    // useScroll
+    useEffect(() => {
+        const handleScroll = ({ scroll }: { scroll: number }) => {
+            const index = sections.reduce((closest, id, i) => {
+                const el = document.getElementById(id)
+                if (!el) return closest
+                const diff = Math.abs(el.offsetTop - scroll)
+                const closestEl = document.getElementById(sections[closest])
+                const closestDiff = closestEl
+                    ? Math.abs(closestEl.offsetTop - scroll)
+                    : Infinity
+                return diff < closestDiff ? i : closest
+            }, 0)
+            onIndexChange(index)
+        }
+        lenis?.on('scroll', handleScroll)
+        return () => lenis?.off('scroll', handleScroll)
+    }, [sections, lenis, onIndexChange])
+
+    // handleClick
+    const handleClick = useCallback(() => {
+        if (isFooterVisible) {
+            lenis?.scrollTo(0, {
+                duration: 1,
+                easing: (t) => 1 - Math.pow(1 - t, 5),
+            })
+            return
+        }
+
+        const nextIndex = currentIndex + 1
+        if (nextIndex >= sections.length) return
+
+        const el = document.getElementById(sections[nextIndex])
+        if (!el) return
+
+        lenis?.scrollTo(el, {
+            duration: 1.2,
+            easing: (t) => 1 - Math.pow(1 - t, 5),
+        })
+    }, [currentIndex, isFooterVisible, lenis, sections])
+
+    return (
+        <button
+            onClick={handleClick}
+            className={styles.button}
+            data-footer-visible={isFooterVisible}
+            aria-label="Toggle scroll position"
+        >
+            <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className={styles.icon}
+            >
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </button>
+    )
+}
+</file>
+
+<file path="widgets/Footer/footer.module.scss">
+@use '@/app/styles/variables' as *;
+
+.footer {
+    background: $color-bg-tertiary;
+    padding: $space-xl;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: $space-md;
+    align-items: center;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    gap: $space-lg;
+}
+
+.logo {
+    height: 32px;
+    opacity: 0.9;
+}
+
+.logoPartner {
+    height: 28px;
+    opacity: 0.7;
+}
+
+.links {
+    display: flex;
+    gap: $space-lg;
+}
+
+.copy {
+    justify-self: end;
+    font-size: 0.75rem;
+    color: $color-transparent;
+    text-align: center;
+}
+
+a {
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color $transition-medium;
+
+    &:hover {
+        color: $color-text-primary;
+    }
+}
+
+@media (max-width: 868px) {
+    .container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: $space-lg;
+    }
+
+    .copy {
+        justify-self: center;
+    }
+}
+</file>
+
+<file path="widgets/Footer/Footer.tsx">
+import styles from './footer.module.scss'
+import deathtripLogo from '@/assets/logos/deathtrip-logo.png'
+import ungITrafikkenLogo from '@/assets/logos/ung-i-trafikken.png'
+import { Link } from 'react-router'
+
+export default function Footer() {
+    return (
+        <footer className={styles.footer} id='footer'>
+            <div className={styles.container}>
+                <div className={styles.logos}>
+                    <a href="https://www.ungitrafikken.no/kampanjer-og-prosjekter/deathtrip" target='_blank'>
+                        <img
+                            src={deathtripLogo}
+                            alt="Death Trip"
+                            className={styles.logo}
+                        />
+                    </a>
+                    <a href="https://www.ungitrafikken.no/" target='_blank'>
+                        <img
+                            src={ungITrafikkenLogo}
+                            alt="Ung i trafikken"
+                            className={styles.logoPartner}
+                        />
+                    </a>
+                </div>
+                <div className={styles.links}>
+                    <Link to="/">Hjem</Link>
+                    <Link to="/info">Info</Link>
+                    <Link to="/contacts">Kontakt</Link>
+                </div>
+                <div className={styles.copy}>
+                    © 2026 Siste Story - Death Trip. Alle rettigheter
+                    forbeholdt.
+                </div>
+            </div>
+        </footer>
+    )
+}
+</file>
+
+<file path="widgets/Footer/index.ts">
+export { default } from './Footer'
+</file>
+
+<file path="widgets/Layout/index.tsx">
+export { default } from './Layout'
+</file>
+
+<file path="widgets/Layout/Layout.tsx">
+import type { ReactNode } from "react";
+import Navbar from '@/widgets/Navbar';
+import Footer from "../Footer";
+
+export default function Layout({ children }: { children: ReactNode }) {
+    return (
+        <div className="layout">
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+        </div>
+    );
+}
+</file>
+
+<file path="widgets/Navbar/index.tsx">
+export { default } from './Navbar'
+</file>
+
+<file path="widgets/Navbar/navbar.module.scss">
+@use '@/app/styles/variables.scss' as *;
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $space-lg;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
+    letter-spacing: 0.05em;
+    color: $color-text-primary;
+    text-decoration: none;
+    z-index: 101;
+}
+
+.navLinks {
+    display: flex;
+    gap: $space-md;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
+
+    a {
+        color: $color-text-secondary;
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition: color $transition-medium;
+
+        &:hover {
+            color: $color-text-primary;
+        }
+    }
+
+    @media (max-width: 768px) {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: $color-bg;
+        gap: $space-xl;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity $transition-medium;
+        filter: none;
+        z-index: 100;
+
+        a {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.navLinksOpen {
+    @media (max-width: 768px) {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    z-index: 101;
+
+    span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: $color-text-primary;
+        transition: transform $transition-medium, opacity $transition-medium;
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+    }
+}
+
+.overlay {
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+    }
+}
+</file>
+
+<file path="widgets/Navbar/Navbar.tsx">
+import { Link } from 'react-router'
+import styles from './navbar.module.scss'
+import { useState } from 'react'
+
+export default function Navbar() {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const close = () => setIsOpen(false)
+
+    return (
+        <>
+            <nav className={styles.nav}>
+                <Link to='/' className={styles.logo} onClick={close}>HDUFNDSK</Link>
+                <div className={`${styles.navLinks} ${isOpen ? styles.navLinksOpen : ''}`}>
+                    <Link to='/' onClick={close}>Hjem</Link>
+                    <Link to='/info' onClick={close}>Info</Link>
+                    <Link to='/contacts' onClick={close}>Kontakt</Link>
+                </div>
+                <button className={styles.burger} onClick={() => setIsOpen(!isOpen)}>
+                    <span />
+                    <span />
+                    <span />
+                </button>
+            </nav>
+            {isOpen && <div className={styles.overlay} onClick={close} />}
+        </>
+    )
+}
+</file>
+
+</files>

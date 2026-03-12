@@ -1,6 +1,8 @@
 import type { IContactFields } from '@/shared/types/interfaces';
 
-const URL = 'https://jsonplaceholder.typicode.com/posts/1'
+const URL = import.meta.env.MODE === 'production'
+  ? `${import.meta.env.VITE_API_URL}/api/contact`
+  : `${import.meta.env.VITE_TEST_URL}/api/contact`
 
 export const sendContactEmail = async (data: IContactFields) => {
   const response = await fetch(URL, {
