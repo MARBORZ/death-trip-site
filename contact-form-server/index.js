@@ -17,8 +17,8 @@ const allowedOrigins = isProd
   : [
       "https://hdufndsk.site",
       "https://www.hdufndsk.site",
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
+      "http://localhost:5500",
+      "http://127.0.0.1:5500",
     ];
 
 app.use(
