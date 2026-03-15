@@ -22,7 +22,7 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
 
     return (
         <LenisContext.Provider value={lenis}>
-            {children}
+        {children}
         </LenisContext.Provider>
     )
 }

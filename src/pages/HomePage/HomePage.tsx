@@ -74,6 +74,7 @@ export default function HomePage() {
                             autoPlay
                             loop
                             muted
+                            playsInline
                             preload="auto"
                         />
                     </div>
@@ -89,7 +90,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="characters">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video src={bar} autoPlay loop muted preload="auto" />
+                        <video src={bar} autoPlay loop muted playsInline preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
@@ -103,7 +104,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="evening">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video src={car} autoPlay loop muted preload="auto" />
+                        <video src={car} autoPlay loop muted playsInline preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
@@ -117,7 +118,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="crash">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video src={drink} autoPlay loop muted preload="auto" />
+                        <video src={drink} autoPlay loop muted playsInline preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
@@ -131,7 +132,7 @@ export default function HomePage() {
             <div className={styles.sectionWrapper} id="aftermath">
                 <section className={styles.section}>
                     <div className={styles.containerImg}>
-                        <video src={crash} autoPlay loop muted preload="auto" />
+                        <video src={crash} autoPlay loop muted playsInline preload="auto" />
                     </div>
                     <div className={styles.overlay} />
                     <motion.div {...textAnimation} className={styles.textBlock}>
