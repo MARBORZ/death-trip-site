@@ -27,19 +27,6 @@
     gap: $space-md;
     filter: drop-shadow(0 0 1px rgb(0, 0, 0));
 
-    a {
-        color: $color-text-secondary;
-        text-decoration: none;
-        font-size: 0.85rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        transition: color $transition-medium;
-
-        &:hover {
-            color: $color-text-primary;
-        }
-    }
-
     @media (max-width: 768px) {
         position: fixed;
         inset: 0;
@@ -53,10 +40,6 @@
         transition: opacity $transition-medium;
         filter: none;
         z-index: 100;
-
-        a {
-            font-size: 1.2rem;
-        }
     }
 }
 

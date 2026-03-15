@@ -2,13 +2,10 @@ import { useContactForm } from '../model'
 import styles from './contact-form.module.scss'
 
 export default function ContactForm() {
-    const { handleSubmit, status  } = useContactForm()
+    const { handleSubmit, status } = useContactForm()
 
     return (
-        <form
-            className={styles.form}
-            onSubmit={handleSubmit}
-        >
+        <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.field}>
                 <label htmlFor="name" className={styles.label}>
                     Navn
@@ -40,10 +37,7 @@ export default function ContactForm() {
             </div>
 
             <div className={styles.field}>
-                <label
-                    htmlFor="message"
-                    className={styles.label}
-                >
+                <label htmlFor="message" className={styles.label}>
                     Melding
                 </label>
 
@@ -57,14 +51,29 @@ export default function ContactForm() {
                 />
             </div>
 
-            {status === 'success' && <span>Skjemaet er sendt!</span>}
-            {status === 'error' && <span>Noe gikk galt</span>}
-            {status === 'loading' && <span>Sender...</span>}
+            {status === 'success' && (
+                <span
+                    className={`${styles.statusMessage} ${styles['statusMessage--success']}`}
+                >
+                    Skjemaet er sendt!
+                </span>
+            )}
+            {status === 'error' && (
+                <span
+                    className={`${styles.statusMessage} ${styles['statusMessage--error']}`}
+                >
+                    Noe gikk galt. Prøv igjen.
+                </span>
+            )}
+            {status === 'loading' && (
+                <span
+                    className={`${styles.statusMessage} ${styles['statusMessage--loading']}`}
+                >
+                    Sender...
+                </span>
+            )}
 
-            <button
-                type="submit"
-                className={styles.button}
-            >
+            <button type="submit" className={styles.button}>
                 Send melding
             </button>
         </form>

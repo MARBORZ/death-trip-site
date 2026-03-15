@@ -2,7 +2,9 @@
 
 // paste normalize above...
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -13,16 +15,33 @@ body {
     font-size: $font-size-body;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: $font-heading;
 }
 
-img, video {
+a {
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color $transition-medium;
+
+    &:hover {
+        color: $color-text-primary;
+    }
+}
+
+img,
+video {
     max-width: 100%;
     display: block;
 }
 
-main, body {
+main,
+body {
     margin: 0;
     padding: 0;
 }

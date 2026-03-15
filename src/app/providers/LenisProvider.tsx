@@ -7,22 +7,29 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
     const [lenis, setLenis] = useState<Lenis | null>(null)
 
     useEffect(() => {
-        const lenis = new Lenis()
+        const lenis = new Lenis({
+            smoothWheel: true,
+            lerp: 0.1,
+            overscroll: false,
+        })
         setLenis(lenis)
+
+        let rafId: number
 
         function raf(time: number) {
             lenis.raf(time)
-            requestAnimationFrame(raf)
+            rafId = requestAnimationFrame(raf)
         }
 
-        requestAnimationFrame(raf)
+        rafId = requestAnimationFrame(raf)
 
-        return () => lenis.destroy()
+        return () => {
+            cancelAnimationFrame(rafId)
+            lenis.destroy()
+        }
     }, [])
 
     return (
-        <LenisContext.Provider value={lenis}>
-        {children}
-        </LenisContext.Provider>
+        <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
     )
 }
