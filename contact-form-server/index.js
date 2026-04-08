@@ -11,11 +11,13 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const allowedOrigins = isProd
     ? [
+          'https://death-trip-site.vercel.app',
           'https://death-trip-site-server.onrender.com',
           'https://hdufndsk.site',
           'https://www.hdufndsk.site',
       ]
     : [
+          'https://death-trip-site.vercel.app',
           'https://death-trip-site-server.onrender.com',
           'https://hdufndsk.site',
           'https://www.hdufndsk.site',
