@@ -4,22 +4,22 @@ dotenv.config()
 import express from "express"
 import cors from "cors"
 
-import contactRoute from './routes/contact.js'
+import router from './routes/contact.js'
 
 const app = express()
 const isProd = process.env.NODE_ENV === "production";
 
 const allowedOrigins = isProd
   ? [
-      "https://hdufndsk.site",
-      "https://www.hdufndsk.site",
-    ]
+    "https://hdufndsk.site",
+    "https://www.hdufndsk.site",
+  ]
   : [
-      "https://hdufndsk.site",
-      "https://www.hdufndsk.site",
-      "http://localhost:5500",
-      "http://127.0.0.1:5500",
-    ];
+    "https://hdufndsk.site",
+    "https://www.hdufndsk.site",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+  ];
 
 app.use(
   cors({
@@ -31,11 +31,11 @@ app.use(
   })
 );
 
-app.use(express.json({limit: "10kb"}))
-app.use("/api/contact", contactRoute)
+app.use(express.json({ limit: "10kb" }))
+app.use("/api/contact", router)
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 })
 
