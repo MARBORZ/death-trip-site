@@ -76,7 +76,6 @@ export default function HomePage() {
                             muted
                             playsInline
                             preload="auto"
-                            controls
                         />
                     </div>
                     <div className={styles.overlay} />
