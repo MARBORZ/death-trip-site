@@ -1,19 +1,19 @@
 # Death Trip Site
 
-A modern, dark-themed website built with React, TypeScript, and Motion (Framer Motion). Features smooth scrolling with Lenis and elegant animations.
+Dark-themed site with React, TypeScript, and Motion. Has smooth scrolling and some animations.
 
 ## 🎨 About
 
-Death Trip is a visually striking website with a dark aesthetic, smooth scroll behavior, and fluid animations. Built with modern web technologies for optimal performance.
+Experiment with a dark aesthetic. Uses Lenis for smooth scroll and Motion for animations. Wanted to try building something moody.
 
 ## ✨ Features
 
-- **Smooth Scrolling** — Lenis integration for buttery-smooth scroll
-- **Motion Animations** — Fluid animations with Motion library
-- **Dark Theme** — Elegant dark aesthetic
-- **TypeScript** — Full type safety
-- **Responsive Design** — Works across all devices
-- **Vite** — Fast development and optimized builds
+- **Smooth Scrolling** — Lenis for scroll behavior
+- **Motion Animations** — Page animations
+- **Dark Theme** — Dark color scheme
+- **TypeScript** — Type checking
+- **Responsive** — Mobile and desktop
+- **Vite** — Dev server and build tool
 
 ## 🛠️ Tech Stack
 
