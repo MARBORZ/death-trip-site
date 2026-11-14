@@ -1,8 +1,10 @@
 # death-trip-site
 
-Dark-themed site built with React, TypeScript, Motion and Lenis smooth scrolling. Made together with [Vadym Yabluchkin](https://github.com/VadimAndroid); we worked in separate branches (`dev_amadi`, `dev_vadim`) and merged through pull requests.
+Experiment with a dark aesthetic. React, TypeScript, Motion for animations, Lenis for smooth scroll. Wanted to try building something moody.
 
-`contact-form-server/` is an Express endpoint that forwards the contact form through Resend, with rate limiting.
+Made together with [Vadym Yabluchkin](https://github.com/VadimAndroid). Each of us had own branch (`dev_amadi`, `dev_vadim`), merged through pull requests.
+
+`contact-form-server/` – Express endpoint for the contact form, sends through Resend.
 
 ## Run
 
@@ -11,7 +13,7 @@ npm install
 npm run dev
 ```
 
-Contact form server (needs `.env` with `RESEND_API_KEY`, `FROM_EMAIL`, `MAIL_TO`):
+Form server needs `.env` with `RESEND_API_KEY`, `FROM_EMAIL`, `MAIL_TO`:
 
 ```bash
 cd contact-form-server
